@@ -3,6 +3,7 @@ import { $ } from 'bun';
 import path from 'path';
 import { exec } from 'child_process';
 import { myInit, pathSpace } from './config';
+import fs from 'fs-extra';
 
 await myInit();
 
@@ -30,24 +31,27 @@ try {
   process.exit(1);
 }
 console.log('目录已清空');
+
 const openFile = [
-  `${rootPath}/.vscode`,
-  `${rootPath}/src`,
-  `${rootPath}/package.json`,
-  `${rootPath}/.gitignore`,
-  `${rootPath}/tsconfig.json`,
-  `${rootPath}/.prettierignore`,
-  `${rootPath}/.prettierrc.cjs`,
-  `${rootPath}/go.mod`,
+  { from: '/private/VuePress_README.md', to: '/README.md' },
+  { from: '/.vscode', to: '/.vscode' },
+  { from: '/src', to: '/src' },
+  { from: '/package.json', to: '/package.json' },
+  { from: '/.gitignore', to: '/.gitignore' },
+  { from: '/tsconfig.json', to: '/tsconfig.json' },
+  { from: '/.prettierignore', to: '/.prettierignore' },
+  { from: '/.prettierrc.cjs', to: '/.prettierrc.cjs' },
+  { from: '/go.mod', to: '/go.mod' },
 ];
 try {
-  await $`cp -rf "${rootPath}/private/VuePress_README.md"  "${loclDepotPath}/README.md"`;
   for (let i = 0; i < openFile.length; i++) {
     const el = openFile[i];
-    await $`cp -rf "${el}" "${loclDepotPath}/"`;
+    const fromPath = path.join(rootPath, el.from);
+    const toPath = path.join(loclDepotPath, el.to);
+    fs.cpSync(fromPath, toPath, { recursive: true });
   }
 } catch (error) {
-  console.error(`cp err code: ${error.exitCode}`);
+  console.error(`cp err code: ${error}`);
   console.info(error.stdout.toString());
   console.info(error.stderr.toString());
   process.exit(1);
@@ -58,10 +62,13 @@ $.cwd(cachePath);
 
 try {
   await $`git clone ${gitRemotePath} ${local_remoteDepotPath}`;
-  await $`cp -af ${local_remoteDepotPath}/.git "${loclDepotPath}/"`;
-  await $`rm -rf ${local_remoteDepotPath}`;
+
+  const dotGitPath_remote = path.join(local_remoteDepotPath, '.git');
+  const dotGitPath_local = path.join(loclDepotPath, '.git');
+  fs.cpSync(dotGitPath_remote, dotGitPath_local, { recursive: true });
+  fs.rmSync(local_remoteDepotPath, { recursive: true });
 } catch (error) {
-  console.error(`git err code: ${error.exitCode}`);
+  console.error(`git err code: ${error}`);
   console.info(error.stdout.toString());
   console.info(error.stderr.toString());
   process.exit(1);

@@ -111,7 +111,7 @@ export const myInit = async () => {
   await filePermissions777();
   await SetGitGlobalConfig();
   await SetGitLocalConfig();
-  const rootPath = process.env.PWD;
+  const rootPath = process.cwd();
   if (!rootPath) {
     console.error('rootPath is empty');
     process.exit(1);

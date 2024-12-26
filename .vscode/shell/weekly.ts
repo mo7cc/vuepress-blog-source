@@ -7,7 +7,7 @@ import weekOfYear from 'dayjs/plugin/weekOfYear';
 import dayOfYear from 'dayjs/plugin/dayOfYear';
 
 import path from 'path';
-import fs from 'fs';
+import fs from 'fs-extra';
 import template from 'art-template';
 
 //数组洗牌
