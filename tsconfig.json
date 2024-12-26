@@ -1,12 +1,12 @@
 {
   "compilerOptions": {
-    "resolveJsonModule": true,
     "esModuleInterop": true,
-    "module": "NodeNext",
+    "target": "ES2020",
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
     "allowJs": true,
-    "moduleResolution": "NodeNext",
     "outDir": "./dist"
   },
-  "include": ["src/.vuepress/**/*.ts", "src/.vuepress/**/*.vue", "src/.vuepress/**/*", "src/.vuepress/public"],
+  "include": ["src/.vuepress/**/*"],
   "exclude": ["node_modules", "dist", "private"]
 }

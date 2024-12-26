@@ -2,10 +2,10 @@ import { hopeTheme } from 'vuepress-theme-hope';
 import { enNavbar, zhNavbar } from './navbar/index.js';
 import { enSidebar, zhSidebar } from './sidebar/index.js';
 import { getDirname, path } from 'vuepress/utils';
-import { BlogPassword } from '../../private/password.js';
-import AppPackage from '../../package.json' with { type: 'json' };
 
-import manifest_json from './public/pwa/manifest.json' with { type: 'json' };
+import AppPackage from '../../package.json';
+import manifest_json from './public/pwa/manifest.json';
+
 const manifestJson: any = manifest_json;
 
 const __dirname = getDirname(import.meta.url);
@@ -93,12 +93,6 @@ export default hopeTheme({
         intro: '/en/intro.html',
         timeline: 'Something wonderful is about to  happen.',
       },
-    },
-  },
-
-  encrypt: {
-    config: {
-      '/en/demo/encrypt.html': [BlogPassword],
     },
   },
 

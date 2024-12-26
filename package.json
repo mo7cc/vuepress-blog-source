@@ -9,14 +9,14 @@
     "build": "vuepress-vite build src",
     "dev": "vuepress-vite dev src --clean-cache",
     "update-package": "bun x vp-update",
-    "sync": "bash .vscode/shell/git-sync.sh",
-    "deploy": "bash ./.vscode/shell/deploy.sh",
-    "open": "bash .vscode/shell/open.sh",
-    "weekly": "bun ./.vscode/shell/weekly.js",
-    "preview": "go run ./.vscode/shell/static_serve.go",
-    "clear-dir": "rm -rf .cache dist .trash node_modules pnpm-lock.yaml bun.lockb"
+    "weekly": "bun .vscode/shell/weekly.ts",
+    "sync": "bun .vscode/shell/git-sync.ts",
+    "deploy": "bun .vscode/shell/deploy.ts",
+    "open": "bun .vscode/shell/open-source.ts",
+    "preview": "go run .vscode/shell/static_serve.go",
+    "clear-dir": "rm -rf .cache dist .trash node_modules pnpm-lock.yaml bun.lockb go.sum"
   },
-  "dependencies": {
+  "devDependencies": {
     "@vuepress/bundler-vite": "2.0.0-rc.19",
     "@vuepress/plugin-feed": "2.0.0-rc.66",
     "@vuepress/plugin-pwa": "2.0.0-rc.66",
@@ -24,6 +24,7 @@
     "@vuepress/plugin-slimsearch": "2.0.0-rc.67",
     "@waline/client": "^3.4.2",
     "aplayer": "^1.10.1",
+    "art-template": "^4.13.2",
     "axios": "^1.7.9",
     "dayjs": "^1.11.13",
     "echarts": "^5.5.1",
@@ -32,6 +33,7 @@
     "vue": "^3.5.13",
     "vue-router": "^4.5.0",
     "vuepress": "2.0.0-rc.19",
-    "vuepress-theme-hope": "2.0.0-rc.66"
+    "vuepress-theme-hope": "2.0.0-rc.66",
+    "@types/bun": "^1.1.14"
   }
 }
