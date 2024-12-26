@@ -5,6 +5,10 @@ import { exec } from 'child_process';
 import { myInit, pathSpace } from './config';
 import fs from 'fs-extra';
 
+exec('open https://github.com/mo7cc/vuepress-blog-source');
+
+console.log('打开网址');
+
 await myInit();
 
 let desc = process.argv[2];
