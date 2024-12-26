@@ -2,7 +2,7 @@
 import { $ } from 'bun';
 import path from 'path';
 import { exec } from 'child_process';
-import { myInit, pathSpace } from './config';
+import { myInit, pathSpace, sleep } from './config';
 import fs from 'fs-extra';
 
 await myInit();
@@ -95,4 +95,6 @@ console.log(`
 https://github.com/mo7cc/vuepress-blog-source
 `);
 exec('start https://github.com/mo7cc/vuepress-blog-source');
+
+await sleep(500);
 process.exit(0);

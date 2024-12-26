@@ -107,6 +107,12 @@ const SetGitGlobalConfig = async () => {
   }
 };
 
+export const sleep = (ms) => {
+  return new Promise((resolve) => {
+    return setTimeout(resolve, ms);
+  });
+};
+
 export const myInit = async () => {
   await filePermissions777();
   await SetGitGlobalConfig();

@@ -3,7 +3,7 @@ import { $ } from 'bun';
 import path from 'path';
 import { exec } from 'child_process';
 import fs from 'fs-extra';
-import { myInit, pathSpace } from './config';
+import { myInit, pathSpace, sleep } from './config';
 
 await myInit();
 
@@ -56,4 +56,5 @@ https://mo7.cc
 exec('start https://mo7.cc');
 exec('start https://github.com/mo7cc/mo7cc.github.io');
 
+await sleep(500);
 process.exit(0);
