@@ -2,7 +2,9 @@
 import { $ } from 'bun';
 import path from 'path';
 import { exec } from 'child_process';
-import fs from 'fs';
+import { myInit, pathSpace } from './config';
+
+await myInit();
 
 let desc = process.argv[2];
 if (!desc) {
@@ -12,11 +14,7 @@ if (!desc) {
   console.log(`git commit: ${desc} \n`);
 }
 
-const rootPath = process.env.PWD;
-if (!rootPath) {
-  console.error('rootPath is empty');
-  process.exit(1);
-}
+const rootPath = pathSpace.rootPath;
 const cachePath = path.join(rootPath, '.cache');
 const loclDepotPath = path.join(cachePath, 'local-source');
 const local_remoteDepotPath = path.join(cachePath, 'remote-source');

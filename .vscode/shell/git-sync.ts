@@ -1,5 +1,8 @@
 #!bun
 import { $ } from 'bun';
+import { myInit } from './config';
+
+await myInit();
 
 let desc = process.argv[2];
 if (!desc) {

@@ -3,6 +3,9 @@ import { $ } from 'bun';
 import path from 'path';
 import { exec } from 'child_process';
 import fs from 'fs';
+import { myInit, pathSpace } from './config';
+
+await myInit();
 
 let desc = process.argv[2];
 if (!desc) {
@@ -12,12 +15,7 @@ if (!desc) {
   console.log(`git commit: ${desc} \n`);
 }
 
-const rootPath = process.env.PWD;
-if (!rootPath) {
-  console.error('rootPath is empty');
-  process.exit(1);
-}
-const distPath = path.join(rootPath, 'dist');
+const distPath = pathSpace.distPath;
 const GitRemotePath = 'git@github.com:mo7cc/mo7cc.github.io.git';
 
 try {
