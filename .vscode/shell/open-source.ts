@@ -59,12 +59,11 @@ try {
 console.log('本地源码构建完成');
 
 $.cwd(cachePath);
-
+const dotGitPath_remote = path.join(local_remoteDepotPath, '.git');
+const dotGitPath_local = path.join(loclDepotPath, '.git');
 try {
   await $`git clone ${gitRemotePath} ${local_remoteDepotPath}`;
 
-  const dotGitPath_remote = path.join(local_remoteDepotPath, '.git');
-  const dotGitPath_local = path.join(loclDepotPath, '.git');
   fs.cpSync(dotGitPath_remote, dotGitPath_local, { recursive: true });
   await $`rm -rf ${local_remoteDepotPath}`;
 } catch (error) {
@@ -77,12 +76,13 @@ try {
 console.log('git仓库已构建完毕');
 
 $.cwd(loclDepotPath);
-const dotGitPath = path.join(loclDepotPath, '.git');
 try {
   await $`git add .`;
   await $`git commit -m "${desc}"`;
   await $`git push`;
-  await $`rm -rf ${dotGitPath}`;
+  console.log('删除目录', dotGitPath_local);
+
+  await $`rm -rf ${dotGitPath_local}`;
 } catch (error) {
   console.error(`git err code: ${error.exitCode}`);
   console.info(error.stdout.toString());
