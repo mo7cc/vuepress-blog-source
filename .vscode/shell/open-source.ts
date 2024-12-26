@@ -5,10 +5,6 @@ import { exec } from 'child_process';
 import { myInit, pathSpace } from './config';
 import fs from 'fs-extra';
 
-exec('start https://github.com/mo7cc/vuepress-blog-source');
-
-console.log('打开网址');
-
 await myInit();
 
 let desc = process.argv[2];
@@ -70,7 +66,7 @@ try {
   const dotGitPath_remote = path.join(local_remoteDepotPath, '.git');
   const dotGitPath_local = path.join(loclDepotPath, '.git');
   fs.cpSync(dotGitPath_remote, dotGitPath_local, { recursive: true });
-  fs.rmSync(local_remoteDepotPath, { recursive: true });
+  await $`rm -rf ${local_remoteDepotPath}`;
 } catch (error) {
   console.error(`git err code: ${error}`);
   console.info(error.stdout.toString());
@@ -98,6 +94,5 @@ console.log(`
 推送成功:
 https://github.com/mo7cc/vuepress-blog-source
 `);
-exec('open https://github.com/mo7cc/vuepress-blog-source');
-
+exec('start https://github.com/mo7cc/vuepress-blog-source');
 process.exit(0);

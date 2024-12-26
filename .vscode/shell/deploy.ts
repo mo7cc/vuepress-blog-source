@@ -53,7 +53,7 @@ console.log(`
 https://github.com/mo7cc/mo7cc.github.io
 https://mo7.cc
 `);
-exec('open https://mo7.cc');
-exec('open https://github.com/mo7cc/mo7cc.github.io');
+exec('start https://mo7.cc');
+exec('start https://github.com/mo7cc/mo7cc.github.io');
 
 process.exit(0);
