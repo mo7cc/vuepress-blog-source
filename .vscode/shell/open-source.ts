@@ -72,10 +72,12 @@ try {
 console.log('git仓库已构建完毕');
 
 $.cwd(loclDepotPath);
+const dotGitPath = path.join(loclDepotPath, '.git');
 try {
   await $`git add .`;
   await $`git commit -m "${desc}"`;
   await $`git push`;
+  await $`rm -rf ${dotGitPath}`;
 } catch (error) {
   console.error(`git err code: ${error.exitCode}`);
   console.info(error.stdout.toString());
@@ -88,11 +90,5 @@ console.log(`
 https://github.com/mo7cc/vuepress-blog-source
 `);
 exec('open https://github.com/mo7cc/vuepress-blog-source');
-
-const dotGitPath = path.join(loclDepotPath, '.git');
-if (fs.existsSync(dotGitPath)) {
-  fs.rmdirSync(dotGitPath);
-  console.log('.git已删除');
-}
 
 process.exit(0);

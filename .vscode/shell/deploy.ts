@@ -35,13 +35,14 @@ if (!fs.existsSync(distPath)) {
 }
 
 $.cwd(distPath);
-
+const dotGitPath = path.join(distPath, '.git');
 try {
   await $`git init`;
   await $`git add .`;
   await $`git commit -m "${desc}"`;
   await $`git remote add origin "${GitRemotePath}"`;
   await $`git push -f --set-upstream origin main:main`;
+  await $`rm -rf ${dotGitPath}`;
 } catch (error) {
   console.error(`git err code: ${error.exitCode}`);
   console.info(error.stdout.toString());
@@ -56,11 +57,5 @@ https://mo7.cc
 `);
 exec('open https://mo7.cc');
 exec('open https://github.com/mo7cc/mo7cc.github.io');
-const dotGitPath = path.join(distPath, '.git');
-
-if (fs.existsSync(dotGitPath)) {
-  fs.rmdirSync(dotGitPath);
-  console.log('.git已删除');
-}
 
 process.exit(0);
