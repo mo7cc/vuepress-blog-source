@@ -73,8 +73,8 @@ permalink: /favorite/links/friend.html
 <VPCard
   title="耳朵同"
   desc="这里是耳朵同的博客"
-  logo="https://erduotong.github.io/logo.png"
-  link="https://erduotong.github.io/"
+  logo="https://blog.erduotong.com/logo.png"
+  link="https://blog.erduotong.com/"
 />
 
 <VPCard
