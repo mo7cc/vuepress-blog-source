@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { onMounted, nextTick, ref } from 'vue';
 import { useRouter } from 'vue-router';
+import { detectDevice } from '@healerlab/device-js';
 
 import MyIcon from './MyIcon.vue';
 // 图标需要引入 iconfont
@@ -102,6 +103,14 @@ function ImageClick(e) {
 }
 
 function keyUpFunc(event) {
+  if (event.type == 'wheel') {
+    if (event.deltaY > 0) {
+      shrinkFunc();
+    } else {
+      zoomFunc();
+    }
+  }
+
   if (event.key === 'Enter') {
     fullscreenFunc();
   }
@@ -156,8 +165,13 @@ function InitPreviewImage(type) {
   ImageArr.value = imaArr;
 
   document.removeEventListener('keyup', keyUpFunc);
-  if (type === 'bind') {
+  if (type === 'bind' && detectDevice.isDesktop) {
     document.addEventListener('keyup', keyUpFunc);
+  }
+
+  document.removeEventListener('wheel', keyUpFunc);
+  if (type === 'bind' && detectDevice.isDesktop) {
+    document.addEventListener('wheel', keyUpFunc);
   }
 }
 
@@ -314,7 +328,9 @@ onMounted(() => {
           <div class="Mo7PreviewBox-idxView-alt" v-if="ImageArr[CurrentImgIdx].alt">
             {{ ImageArr[CurrentImgIdx].alt }}
           </div>
-          <div class="Mo7PreviewBox-idxView-key">快捷键: ↑:放大 ↓:缩小 ←:上一张 →:下一张 ↵:新页面打开 Esc:关闭预览</div>
+          <div class="Mo7PreviewBox-idxView-key" v-if="detectDevice.isDesktop">
+            快捷键:放大↑，缩小↓，上一张←，下一张→，新页面打开↵，Esc关闭预览
+          </div>
         </div>
       </div>
     </div>
@@ -372,11 +388,8 @@ onMounted(() => {
 
   .Mo7PreviewBox-idxView {
     position: absolute;
-    bottom: 40px;
-    left: 0;
-    width: 100%;
-    display: flex;
-    justify-content: center;
+    bottom: 10px;
+    right: 10px;
   }
 
   .Mo7PreviewBox-idxView-box {
@@ -384,12 +397,10 @@ onMounted(() => {
     background-color: rgba(0, 0, 0, 0.4);
     padding: 8px;
     color: #fff;
-    margin: 0 auto;
-    max-width: 80%;
     text-align: center;
   }
   .Mo7PreviewBox-idxView-idx {
-    font-size: 20px;
+    font-size: 14px;
   }
   .Mo7PreviewBox-idxView-alt {
     font-size: 20px;

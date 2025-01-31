@@ -18,10 +18,12 @@ try {
   await $`git commit -m "${desc}"`;
   await $`git push`;
 } catch (error) {
-  console.error(`git err code: ${error.exitCode}`);
-  console.info(error.stdout.toString());
-  console.info(error.stderr.toString());
-  process.exit(1);
+  if (error.stdout.toString().includes('nothing to commit, working tree clean')) {
+    process.exit(0);
+  } else {
+    console.error(`git err code: ${error.exitCode}`);
+    throw new Error(error.stdout.toString());
+  }
 }
 
 process.exit(0);

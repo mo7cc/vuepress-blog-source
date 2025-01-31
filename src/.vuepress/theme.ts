@@ -49,7 +49,6 @@ export default hopeTheme({
   },
   sidebarSorter: ['order', 'readme', 'title', 'filename'],
 
-  iconAssets: '//at.alicdn.com/t/c/font_3855310_ue6zvltxqq.css',
   logo: '/pwa/144.png',
   docsDir: 'src',
   blog: {
@@ -143,12 +142,13 @@ export default hopeTheme({
   plugins: {
     blog: true,
     photoSwipe: false, // 这个插件难用的 一 B
+    icon: {
+      assets: '//at.alicdn.com/t/c/font_3855310_ue6zvltxqq.css',
+    },
 
     comment: {
       provider: 'Waline',
       serverURL: 'https://talk.mo7.cc',
-      copyright: false,
-      reaction: true,
     },
 
     components: {

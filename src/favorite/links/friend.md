@@ -84,6 +84,13 @@ permalink: /favorite/links/friend.html
   link="https://love.xingji.fun"
 />
 
+<VPCard
+  title="叶随风"
+  desc="世界和平,身体健康。"
+  logo="https://cdn.jsdelivr.net/gh/20000428/PictureBed/img/huge.png"
+  link="https://yesuifeng.cc"
+/>
+
 ---
 
 ::: tip 欢迎交换友情链接
