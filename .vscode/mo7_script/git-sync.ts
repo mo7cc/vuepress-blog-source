@@ -1,6 +1,9 @@
 #!bun
+/* 
+git 自动提交
+*/
 import { $ } from 'bun';
-import { myInit } from './config';
+import { myInit } from './common';
 
 await myInit();
 

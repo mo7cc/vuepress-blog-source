@@ -1,4 +1,7 @@
 #!bun
+/* 
+生成周报 weekly 文件
+*/
 import { $ } from 'bun';
 import dayjs from 'dayjs';
 import 'dayjs/locale/zh-cn';
@@ -56,11 +59,11 @@ interface DailyQuote {
 }
 
 class Weekly {
-  readonly weeklyDir: string = './weekly';
   readonly weekStr = ['周一', '周二', '周三', '周四', '周五', '周六', '周天'];
   readonly rootPath = path.resolve();
-  readonly tempPath = path.join(this.rootPath, '.vscode', 'shell', 'weekly.md');
-  readonly PoetryPath = path.join(this.rootPath, '.vscode', 'shell', 'Poetry.md');
+  readonly weeklyDir = './weekly';
+  readonly tempPath = path.join(__dirname, 'weekly.md');
+  readonly PoetryPath = path.join(__dirname, 'Poetry.md');
   WeekList!: Array<WeekObj>;
   Year: string; // 年份
   WeekIndexOfYear!: number; // 一年中的第几周

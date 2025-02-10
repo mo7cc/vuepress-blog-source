@@ -1,8 +1,13 @@
 #!bun
+
+/* 
+用于开源本项目，会提取部分文件到开源仓库里面并发布
+
+*/
 import { $ } from 'bun';
 import path from 'path';
 import { exec } from 'child_process';
-import { myInit, pathSpace, sleep } from './config';
+import { myInit, pathSpace, sleep } from './common';
 import fs from 'fs-extra';
 
 await myInit();

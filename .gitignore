@@ -138,6 +138,7 @@ dist
 # vuepress build output
 
 .vuepress/dist
+config.ts.*.mjs
 
 # vuepress v2.x temp and cache directory
 
@@ -197,3 +198,4 @@ rs-test-folder-*
 .obsidian/workspace-mobile.json
 big_file
 .obsidian/plugins/remotely-save/data.json
+.obsidian/graph.json

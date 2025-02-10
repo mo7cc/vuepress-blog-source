@@ -1,3 +1,7 @@
+/* 
+公共函数
+*/
+
 import os from 'os';
 import { $ } from 'bun';
 import path from 'path';
@@ -18,61 +22,13 @@ const filePermissions777 = async () => {
   }
 };
 
-const git_LocalConfig = [
-  // 设置大小写敏感
-  'config core.ignorecase false',
-
-  // 忽略文件权限变更
-  'config core.filemode false',
-
-  // 禁用 pull.rebase
-  'config pull.rebase false',
-];
-const git_GlobalConfig = [
-  // 查看当前安装的 "版本
-  'version',
-
-  // 设置用户名（把 墨七 替换成你自己的名字）
-  `config --global user.name ${GitUserName}`,
-
-  // 查看设置好的用户名
-  'config user.name',
-
-  // 设置邮箱(替换成你自己的邮箱)
-  `config --global user.email ${GitEmail}`,
-
-  // 查看设置好的邮箱
-  'config user.email',
-
-  // 禁用 pull.rebase
-  'config --global pull.rebase false',
-
-  // 设置大小写敏感
-  'config --global core.ignorecase false',
-
-  // 禁用中文转码
-  'config --global core.quotepath false',
-
-  // 提交时转换为 LF，检出时不转换
-  'config --global core.autocrlf input',
-
-  // 提交包含混合换行符的文件发出警告
-  'config --global core.safecrlf warn',
-
-  // 忽略文件权限的变更(全局)
-  'config --global core.filemode false',
-
-  // 设置 init 时 默认分支为 main
-  'config --global init.defaultBranch main',
-
-  // 关闭分支显示分页 显示
-  'config --global pager.branch false',
-];
-
 const SetGitLocalConfig = async () => {
   try {
+    // 开启当前项目 git 大小写敏感
     await $`git config core.ignorecase false`;
+    // 忽略当前项目文件权限变更
     await $`git config core.filemode false`;
+    // 禁用当前项目 pull.rebase
     await $`git config pull.rebase false`;
     console.log('本地 git config 已覆盖');
   } catch (error) {
@@ -83,22 +39,35 @@ const SetGitLocalConfig = async () => {
   }
 };
 
+// Git 全局设置
 const SetGitGlobalConfig = async () => {
   try {
+    // 查看当前安装的 git 版本
     await $`git version`;
+    // 设置git用户名
     await $`git config --global user.name ${GitUserName}`;
     await $`git config user.name`;
+    // 设置git提交邮箱
     await $`git config --global user.email ${GitEmail}`;
     await $`git config user.email`;
+    // 禁用 pull.rebase
     await $`git config --global pull.rebase false`;
+    // 设置大小写敏感
     await $`git config --global core.ignorecase false`;
+    // 禁用中文转码
     await $`git config --global core.quotepath false`;
+    // 提交时转换为 LF，检出时不转换
     await $`git config --global core.autocrlf input`;
+    // 提交包含混合换行符的文件发出警告
     await $`git config --global core.safecrlf warn`;
+    // 忽略文件权限的变更(全局)
     await $`git config --global core.filemode false`;
+    // 设置 init 时 默认分支为 main
     await $`git config --global init.defaultBranch main`;
+    // 关闭分支显示分页 显示
     await $`git config --global pager.branch false`;
-    console.log('全局 git config 已覆盖');
+
+    console.log('git config 已覆盖');
   } catch (error) {
     console.error(`git err code: ${error.exitCode}`);
     console.info(error.stdout.toString());

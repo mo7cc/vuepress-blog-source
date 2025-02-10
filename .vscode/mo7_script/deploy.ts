@@ -1,9 +1,13 @@
 #!bun
+
+/* 
+自动发布本项目到 mo7.cc
+*/
 import { $ } from 'bun';
 import path from 'path';
 import { exec } from 'child_process';
 import fs from 'fs-extra';
-import { myInit, pathSpace, sleep } from './config';
+import { myInit, pathSpace, sleep } from './common';
 
 await myInit();
 

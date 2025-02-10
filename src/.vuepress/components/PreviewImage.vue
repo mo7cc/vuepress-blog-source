@@ -1,10 +1,11 @@
 <script setup lang="ts">
 import { onMounted, nextTick, ref } from 'vue';
 import { useRouter } from 'vue-router';
-import { detectDevice } from '@healerlab/device-js';
-
+import { GetDeviceInfo } from '../utils/tools';
 import MyIcon from './MyIcon.vue';
 // 图标需要引入 iconfont
+
+let DeviceInfo: any = ref({});
 
 let ImageArr = ref([]);
 let ShowPreviewBox = ref(false);
@@ -17,6 +18,9 @@ function ClosePreviewBox() {
 
 function zoomFunc() {
   const imgElm = document.getElementById('Mo7PreviewBox-img');
+  if (!imgElm) {
+    return;
+  }
 
   let width = imgElm.clientWidth;
   let height = imgElm.clientHeight;
@@ -28,6 +32,9 @@ function zoomFunc() {
 
 function shrinkFunc() {
   const imgElm = document.getElementById('Mo7PreviewBox-img');
+  if (!imgElm) {
+    return;
+  }
   let width = imgElm.clientWidth;
   let height = imgElm.clientHeight;
   width = width * 0.9;
@@ -38,6 +45,9 @@ function shrinkFunc() {
 
 function fullscreenFunc() {
   const imgElm = document.getElementById('Mo7PreviewBox-img');
+  if (!imgElm) {
+    return;
+  }
   window.open(imgElm.getAttribute('src'));
 }
 
@@ -61,10 +71,16 @@ function rightFunc() {
 
 function ImageBoxReset() {
   const boxElm = document.getElementById('Mo7PreviewBox');
+  if (!boxElm) {
+    return;
+  }
   const boxWidth = boxElm.clientWidth;
   const boxHeight = boxElm.clientHeight;
 
   const imgElm = document.getElementById('Mo7PreviewBox-img');
+  if (!imgElm) {
+    return;
+  }
 
   imgElm.style.width = boxWidth * 0.9 + 'px';
   imgElm.style.height = '';
@@ -133,7 +149,6 @@ function keyUpFunc(event) {
 }
 
 function InitPreviewImage(type) {
-  console.log('初始化图片预览', type);
   let contentElms = document.getElementsByClassName('theme-hope-content');
   let contentElm = null;
   if (contentElms.length > 0) {
@@ -165,12 +180,12 @@ function InitPreviewImage(type) {
   ImageArr.value = imaArr;
 
   document.removeEventListener('keyup', keyUpFunc);
-  if (type === 'bind' && detectDevice.isDesktop) {
+  if (type === 'bind' && DeviceInfo.isPC) {
     document.addEventListener('keyup', keyUpFunc);
   }
 
   document.removeEventListener('wheel', keyUpFunc);
-  if (type === 'bind' && detectDevice.isDesktop) {
+  if (type === 'bind' && DeviceInfo.isPC) {
     document.addEventListener('wheel', keyUpFunc);
   }
 }
@@ -210,8 +225,6 @@ function ImgMouseDown(e) {
   const imgElm = document.getElementById('Mo7PreviewBox-img');
   imgElm.style.cursor = 'move';
   mouseStatus = true;
-
-  console.log('按下', e);
 
   mouseDownX = e.clientX;
   mouseDownY = e.clientY;
@@ -254,6 +267,9 @@ function on_mousedown(e) {
 }
 
 onMounted(() => {
+  DeviceInfo = GetDeviceInfo();
+  console.info('DeviceInfo', DeviceInfo);
+
   nextTick(() => {
     InitPreviewImage('bind');
   });
@@ -278,7 +294,6 @@ onMounted(() => {
   });
 });
 </script>
-
 <template>
   <ClientOnly>
     <div
@@ -328,7 +343,7 @@ onMounted(() => {
           <div class="Mo7PreviewBox-idxView-alt" v-if="ImageArr[CurrentImgIdx].alt">
             {{ ImageArr[CurrentImgIdx].alt }}
           </div>
-          <div class="Mo7PreviewBox-idxView-key" v-if="detectDevice.isDesktop">
+          <div class="Mo7PreviewBox-idxView-key" v-if="DeviceInfo.isPC">
             快捷键:放大↑，缩小↓，上一张←，下一张→，新页面打开↵，Esc关闭预览
           </div>
         </div>

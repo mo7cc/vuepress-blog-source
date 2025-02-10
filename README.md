@@ -45,13 +45,11 @@ https://www.iconfont.cn/manage/index?spm=a313x.7781069.1998910419.22&manage_type
 
 > 个人实测，比较 pnpm 和 NodeJs 速度有显著提升， dev/build 的提升非常明显
 
-bun version : 1.1.x 以上
+bun version : 1.2.x 以上
+
+安装 bun: https://bun.sh
 
 ```bash
-
-# 启用 bun
-npm install -g bun
-
 # 安装依赖
 bun install
 

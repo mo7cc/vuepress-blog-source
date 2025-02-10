@@ -31,3 +31,37 @@ export const CheckStorage = () => {
     clearAllCookie();
   }
 };
+
+export const GetDeviceInfo = () => {
+  const u = window.navigator.userAgent.toLowerCase();
+  const bIsIpad = u.match(/ipad/i) !== null;
+  const bIsIphoneOs = u.match(/iphone os/i) !== null;
+  const bIsMidp = u.match(/midp/i) !== null;
+  const bIsUc7 = u.match(/rv:1.2.3.4/i) !== null;
+  const bIsUc = u.match(/ucweb/i) !== null;
+  const bIsAndroid = u.match(/android/i) !== null;
+  const bIsCE = u.match(/windows ce/i) !== null;
+  const bIsWM = u.match(/windows mobile/i) !== null;
+  const bIsIOS = !!u.match(/\(i[^;]+;( u;)? cpu.+mac os x/) || u.indexOf('ios') > -1;
+  let isPhone = false;
+  let isPc = false;
+  if (bIsIpad || bIsIphoneOs || bIsMidp || bIsUc7 || bIsUc || bIsAndroid || bIsCE || bIsWM || bIsIOS) {
+    isPhone = true;
+  } else {
+    isPc = true;
+  }
+  const obj = {
+    userAgent: u,
+    isWindows: u.match(/windows/i) !== null,
+    isMac: u.match(/macintosh/i) !== null,
+    isWeChat: u.match(/MicroMessenger/i) !== null,
+    isWeibo: u.match(/WeiBo/i) !== null,
+    isAndroid: u.indexOf('android') > -1 || u.indexOf('adr') > -1,
+    isIOS: bIsIOS,
+    isQQ: u.match(/qq\//i) !== null,
+    isPC: isPc,
+    isPhone: isPhone,
+    isDingTalk: u.match(/dingtalk/i),
+  };
+  return obj;
+};
