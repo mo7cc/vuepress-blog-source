@@ -1,6 +1,6 @@
 {
   "name": "mo7_obsidian_data",
-  "version": "1.4.6",
+  "version": "1.4.7",
   "description": "墨七的 Obsidian 笔记仓库。",
   "license": "MIT",
   "author": "墨七",
@@ -15,28 +15,28 @@
     "open": "bun .vscode/mo7_script/open-source.ts",
     "preview": "go run .vscode/mo7_script/static_serve.go",
     "pm2-start": "bun .vscode/mo7_script/pm2_serve_start.ts",
-    "clear-dir": "rm -rf .cache dist .trash node_modules pnpm-lock.yaml bun.lockb bun.lock go.sum package-lock.json"
+    "clear-dir": "rm -rf .cache dist node_modules bun.lock go.sum"
   },
   "devDependencies": {
-    "@types/bun": "^1.2.2",
+    "@types/bun": "^1.2.4",
     "@types/cheerio": "^0.22.35",
-    "@vuepress/bundler-vite": "2.0.0-rc.19",
-    "@vuepress/plugin-feed": "2.0.0-rc.74",
-    "@vuepress/plugin-pwa": "2.0.0-rc.76",
-    "@vuepress/plugin-redirect": "2.0.0-rc.74",
-    "@vuepress/plugin-slimsearch": "2.0.0-rc.74",
-    "@waline/client": "^3.5.1",
+    "@vuepress/bundler-vite": "2.0.0-rc.20",
+    "@vuepress/plugin-feed": "2.0.0-rc.82",
+    "@vuepress/plugin-pwa": "2.0.0-rc.82",
+    "@vuepress/plugin-redirect": "2.0.0-rc.82",
+    "@vuepress/plugin-slimsearch": "2.0.0-rc.82",
+    "@waline/client": "^3.5.5",
     "aplayer": "^1.10.1",
     "art-template": "^4.13.2",
-    "axios": "^1.7.9",
+    "axios": "^1.8.1",
     "cheerio": "^1.0.0",
     "dayjs": "^1.11.13",
     "echarts": "^5.6.0",
-    "sass-embedded": "^1.83.4",
+    "sass-embedded": "^1.85.1",
     "store": "^2.0.12",
     "vue": "^3.5.13",
     "vue-router": "^4.5.0",
-    "vuepress": "2.0.0-rc.19",
-    "vuepress-theme-hope": "2.0.0-rc.71"
+    "vuepress": "2.0.0-rc.20",
+    "vuepress-theme-hope": "2.0.0-rc.74"
   }
 }
