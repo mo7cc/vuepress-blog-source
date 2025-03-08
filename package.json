@@ -1,6 +1,6 @@
 {
   "name": "mo7_obsidian_data",
-  "version": "1.4.7",
+  "version": "1.5.0",
   "description": "墨七的 Obsidian 笔记仓库。",
   "license": "MIT",
   "author": "墨七",
@@ -28,7 +28,7 @@
     "@waline/client": "^3.5.5",
     "aplayer": "^1.10.1",
     "art-template": "^4.13.2",
-    "axios": "^1.8.1",
+    "axios": "^1.8.2",
     "cheerio": "^1.0.0",
     "dayjs": "^1.11.13",
     "echarts": "^5.6.0",

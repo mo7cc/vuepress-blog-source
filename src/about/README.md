@@ -1,7 +1,11 @@
 ---
 icon: info
+
 pageInfo: ['Author', 'PageView']
+
 index: false
+
+footer: false
 permalink: /about/
 ---
 

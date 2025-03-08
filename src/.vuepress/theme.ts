@@ -143,7 +143,7 @@ export default hopeTheme({
     blog: true,
     photoSwipe: false, // 这个插件难用的 一 B
     icon: {
-      assets: '//at.alicdn.com/t/c/font_3855310_ue6zvltxqq.css',
+      assets: '//at.alicdn.com/t/c/font_3855310_jmob2kjgwlo.css',
     },
 
     comment: {
@@ -167,7 +167,6 @@ export default hopeTheme({
     slimsearch: {
       indexContent: true,
     },
-
     pwa: {
       favicon: '/favicon.ico',
       themeColor: '#af7ac5',

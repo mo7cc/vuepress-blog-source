@@ -1,9 +1,9 @@
 import { sidebar } from 'vuepress-theme-hope';
 
 const back_posts = {
-  text: '返回总目录',
-  icon: 'sort',
-  link: '/posts/',
+  text: '站点地图',
+  icon: 'map',
+  link: '/about/catalog.html',
 };
 
 const back_developer = {
@@ -27,241 +27,156 @@ const back_tools = {
 export const zhSidebar = sidebar({
   // 关于
   '/about/': [
-    back_posts,
+    {
+      text: '首页',
+      icon: 'home',
+      link: '/',
+    },
     {
       text: '关于',
       icon: 'info',
       link: '/about/',
       children: 'structure',
     },
+    {
+      text: '域',
+      icon: 'domain',
+      link: '/domain/',
+      prefix: '/domain/',
+      children: 'structure',
+    },
+
+    {
+      text: '术',
+      icon: 'solutions',
+      link: '/solutions/',
+      prefix: '/solutions/',
+      children: 'structure',
+    },
+
+    {
+      text: '技',
+      icon: 'techlab',
+      link: '/techlab/',
+      prefix: '/techlab/',
+      children: 'structure',
+    },
+
+    {
+      text: '阵',
+      icon: 'applied',
+      link: '/applied/',
+      prefix: '/applied/',
+      children: 'structure',
+    },
+
+    {
+      text: '法',
+      icon: 'methodology',
+      link: '/methodology/',
+      prefix: '/methodology/',
+      children: 'structure',
+    },
+
+    {
+      text: '理',
+      icon: 'principles',
+      link: '/principles/',
+      prefix: '/principles/',
+      children: 'structure',
+    },
+
+    {
+      text: '器',
+      icon: 'toolkit',
+      link: '/toolkit/',
+      prefix: '/toolkit/',
+      children: 'structure',
+    },
+
+    {
+      text: '杂',
+      icon: 'misc',
+      link: '/misc/',
+      prefix: '/misc/',
+      children: 'structure',
+    },
   ],
-  // 工具
-  '/tools/': [
+  // 域
+  '/domain/': [
     back_posts,
     {
-      text: '工具',
-      icon: 'gongju',
-      link: '/tools/',
+      text: '域',
+      icon: 'domain',
+      link: '/domain/',
       children: 'structure',
     },
   ],
-  '/tools/git/': [
-    back_tools,
-    {
-      text: 'Git',
-      icon: 'git',
-      link: '/tools/git/',
-      children: 'structure',
-    },
-  ],
-  '/tools/vscode/': [
-    back_tools,
-    {
-      text: 'Visual Studio Code',
-      icon: 'vscode',
-      link: '/tools/vscode/',
-      children: 'structure',
-    },
-  ],
-  // 小技巧
-  '/tips/': [
+  '/solutions/': [
     back_posts,
     {
-      text: '技巧',
-      icon: 'tips',
-      link: '/tips/',
+      text: '术',
+      icon: 'solutions',
+      link: '/solutions/',
       children: 'structure',
     },
   ],
-  // 开发者
-  '/developer/': [
+  '/techlab/': [
     back_posts,
     {
-      text: '开发者',
-      icon: 'developer',
-      link: '/developer/',
-      children: 'structure',
-    },
-  ],
-  '/developer/basic/': [
-    back_developer,
-    {
-      text: '基础',
-      icon: 'basic',
-      link: '/developer/basic/',
-      children: 'structure',
-    },
-  ],
-  '/developer/linux/': [
-    back_developer,
-    {
-      text: 'Linux',
-      icon: 'linux',
-      link: '/developer/linux/',
+      text: '技',
+      icon: 'techlab',
+      link: '/techlab/',
       children: 'structure',
     },
   ],
 
-  '/developer/front_end_web/': [
-    back_developer,
-    {
-      text: 'Web前端',
-      icon: 'HTML',
-      link: '/developer/front_end_web/',
-      children: 'structure',
-    },
-  ],
-  '/developer/golang/': [
-    back_developer,
-    {
-      text: 'Go',
-      icon: 'goicon',
-      link: '/developer/golang/',
-      children: 'structure',
-    },
-  ],
-
-  // leetcode
-  '/leetcode/': [
-    back_developer,
-    {
-      text: 'LeetCode',
-      icon: 'leetcode',
-      link: '/leetcode/',
-      children: 'structure',
-    },
-  ],
-
-  // 教程
-  '/tutorial/': [
+  '/applied/': [
     back_posts,
     {
-      text: '教程',
-      icon: 'bookone',
-      link: '/tutorial/',
+      text: '阵',
+      icon: 'applied',
+      link: '/applied/',
       children: 'structure',
     },
   ],
-  '/tutorial/vuepress-hope/': [
-    back_tutorial,
-    {
-      text: '本博客搭建指南',
-      icon: 'boke',
-      link: '/tutorial/vuepress-hope/',
-      children: 'structure',
-    },
-  ],
-  // 收藏
-  '/favorite/': [
+
+  '/methodology/': [
     back_posts,
     {
-      text: '读书笔记',
-      icon: 'book',
+      text: '法',
+      icon: 'methodology',
+      link: '/methodology/',
       children: 'structure',
-      prefix: 'books/',
-      link: '/favorite/books/',
-    },
-    {
-      text: '随笔',
-      icon: 'ganwu',
-      children: 'structure',
-      prefix: 'essays/',
-      link: '/favorite/essays/',
-    },
-    {
-      text: '影视',
-      icon: 'movie',
-      link: '/favorite/movies/',
-      prefix: 'movies/',
-      children: 'structure',
-    },
-    {
-      text: '音乐',
-      icon: 'music',
-      children: 'structure',
-      prefix: 'music/',
-      link: '/favorite/music/',
-    },
-    {
-      text: '相册',
-      icon: 'xiangce',
-      children: 'structure',
-      prefix: 'photos/',
-      link: '/favorite/photos/',
-    },
-
-    {
-      text: '链接',
-      icon: 'link',
-      children: 'structure',
-      prefix: 'links/',
-      link: '/favorite/links/',
     },
   ],
-  // 整体路由划分
-  '/': [
-    '',
+
+  '/principles/': [
+    back_posts,
     {
-      text: '博文',
-      icon: 'note',
-      prefix: 'posts/',
-      link: '/posts/',
+      text: '理',
+      icon: 'principles',
+      link: '/principles/',
       children: 'structure',
     },
+  ],
 
+  '/toolkit/': [
+    back_posts,
     {
-      text: '收藏',
-      icon: 'favoritea',
-      prefix: 'favorite/',
-      link: '/favorite/',
+      text: '器',
+      icon: 'toolkit',
+      link: '/toolkit/',
       children: 'structure',
     },
+  ],
 
+  '/misc/': [
+    back_posts,
     {
-      text: '开发者',
-      icon: 'developer',
-      prefix: 'developer/',
-      link: '/developer/',
-      children: 'structure',
-    },
-
-    {
-      text: '教程',
-      icon: 'bookone',
-      prefix: 'tutorial/',
-      link: '/tutorial/',
-      children: 'structure',
-    },
-
-    {
-      text: '工具',
-      icon: 'gongju',
-      prefix: 'tools/',
-      link: '/tools/',
-      children: 'structure',
-    },
-
-    {
-      text: '技巧分享',
-      icon: 'tips',
-      prefix: 'tips/',
-      link: '/tips/',
-      children: 'structure',
-    },
-
-    {
-      text: 'LeetCode',
-      icon: 'leetcode',
-      prefix: 'leetcode/',
-      link: '/leetcode/',
-      children: 'structure',
-    },
-
-    {
-      text: '关于',
-      icon: 'info',
-      prefix: 'about/',
-      link: '/about/',
+      text: '杂',
+      icon: 'misc',
+      link: '/misc/',
       children: 'structure',
     },
   ],
