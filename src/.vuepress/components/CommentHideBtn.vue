@@ -4,7 +4,7 @@ import { useRouter } from 'vue-router';
 import { mStorage } from '../utils/tools.js';
 
 const ShowComments = () => {
-  const CommentElm = document.getElementById('vp-comment') as HTMLElement;
+  const CommentElm = document.getElementById('comment') as HTMLElement;
   if (!CommentElm) {
     return;
   }
@@ -13,7 +13,7 @@ const ShowComments = () => {
   mStorage.set('CommentIsDisplay', true);
 };
 const HideComments = () => {
-  const CommentElm = document.getElementById('vp-comment') as HTMLElement;
+  const CommentElm = document.getElementById('comment') as HTMLElement;
   if (!CommentElm) {
     return;
   }
@@ -23,7 +23,7 @@ const HideComments = () => {
 };
 
 const ReadeCommentIsDisplay = () => {
-  const CommentElm = document.getElementById('vp-comment') as HTMLElement;
+  const CommentElm = document.getElementById('comment') as HTMLElement;
   if (!CommentElm) {
     return;
   }
@@ -39,7 +39,7 @@ const ReadeCommentIsDisplay = () => {
 };
 
 const CreateCommentBtn = () => {
-  const CommentElm = document.getElementById('vp-comment');
+  const CommentElm = document.getElementById('comment');
   if (!CommentElm) {
     return;
   }
@@ -98,11 +98,8 @@ onMounted(() => {
 .wl-card .wl-meta > span {
   background: transparent;
 }
-#wl-edit {
-  resize: none;
-  min-height: 5em;
-}
-#vp-comment {
+
+.vp-comment {
   position: relative;
   overflow: hidden;
   opacity: 0;

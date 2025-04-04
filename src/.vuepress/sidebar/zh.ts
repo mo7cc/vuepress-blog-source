@@ -1,37 +1,14 @@
 import { sidebar } from 'vuepress-theme-hope';
 
-const back_posts = {
-  text: '站点地图',
-  icon: 'map',
-  link: '/about/catalog.html',
-};
-
-const back_developer = {
-  text: '返回Developer',
-  icon: 'developer',
-  link: '/developer/',
-};
-
-const back_tutorial = {
-  text: '返回教程',
-  icon: 'bookone',
-  link: '/tutorial/',
-};
-
-const back_tools = {
-  text: '返回工具',
-  icon: 'gongju',
-  link: '/tools/',
+const go_home = {
+  text: '首页',
+  icon: 'home',
+  link: '/',
 };
 
 export const zhSidebar = sidebar({
-  // 关于
   '/about/': [
-    {
-      text: '首页',
-      icon: 'home',
-      link: '/',
-    },
+    go_home,
     {
       text: '关于',
       icon: 'info',
@@ -39,144 +16,84 @@ export const zhSidebar = sidebar({
       children: 'structure',
     },
     {
-      text: '域',
-      icon: 'domain',
-      link: '/domain/',
-      prefix: '/domain/',
+      text: '资源收藏',
+      icon: 'start',
+      link: '/bookmark/',
+      prefix: '/bookmark/',
+      children: 'structure',
+    },
+    {
+      text: '编程开发',
+      icon: 'developer',
+      link: '/coder/',
+      prefix: '/coder/',
       children: 'structure',
     },
 
     {
-      text: '术',
-      icon: 'solutions',
-      link: '/solutions/',
-      prefix: '/solutions/',
-      children: 'structure',
-    },
-
-    {
-      text: '技',
-      icon: 'techlab',
-      link: '/techlab/',
-      prefix: '/techlab/',
-      children: 'structure',
-    },
-
-    {
-      text: '阵',
-      icon: 'applied',
-      link: '/applied/',
-      prefix: '/applied/',
-      children: 'structure',
-    },
-
-    {
-      text: '法',
-      icon: 'methodology',
-      link: '/methodology/',
-      prefix: '/methodology/',
-      children: 'structure',
-    },
-
-    {
-      text: '理',
-      icon: 'principles',
-      link: '/principles/',
-      prefix: '/principles/',
-      children: 'structure',
-    },
-
-    {
-      text: '器',
-      icon: 'toolkit',
-      link: '/toolkit/',
-      prefix: '/toolkit/',
-      children: 'structure',
-    },
-
-    {
-      text: '杂',
+      text: '杂七杂八',
       icon: 'misc',
       link: '/misc/',
       prefix: '/misc/',
       children: 'structure',
     },
-  ],
-  // 域
-  '/domain/': [
-    back_posts,
     {
-      text: '域',
-      icon: 'domain',
-      link: '/domain/',
+      text: '个人管理',
+      icon: 'selfmanage',
+      link: '/self_manage/',
+      prefix: '/self_manage/',
       children: 'structure',
     },
-  ],
-  '/solutions/': [
-    back_posts,
     {
-      text: '术',
-      icon: 'solutions',
-      link: '/solutions/',
-      children: 'structure',
-    },
-  ],
-  '/techlab/': [
-    back_posts,
-    {
-      text: '技',
-      icon: 'techlab',
-      link: '/techlab/',
-      children: 'structure',
-    },
-  ],
-
-  '/applied/': [
-    back_posts,
-    {
-      text: '阵',
-      icon: 'applied',
-      link: '/applied/',
-      children: 'structure',
-    },
-  ],
-
-  '/methodology/': [
-    back_posts,
-    {
-      text: '法',
-      icon: 'methodology',
-      link: '/methodology/',
-      children: 'structure',
-    },
-  ],
-
-  '/principles/': [
-    back_posts,
-    {
-      text: '理',
+      text: '理论研究',
       icon: 'principles',
-      link: '/principles/',
+      link: '/theory/',
+      prefix: '/theory/',
       children: 'structure',
     },
   ],
-
-  '/toolkit/': [
-    back_posts,
+  '/bookmark/': [
+    go_home,
     {
-      text: '器',
-      icon: 'toolkit',
-      link: '/toolkit/',
+      text: '资源收藏',
+      icon: 'start',
+      link: '/bookmark/',
       children: 'structure',
     },
   ],
-
+  '/coder/': [
+    go_home,
+    {
+      text: '编程开发',
+      icon: 'developer',
+      link: '/coder/',
+      children: 'structure',
+    },
+  ],
   '/misc/': [
-    back_posts,
+    go_home,
     {
-      text: '杂',
+      text: '杂七杂八',
       icon: 'misc',
       link: '/misc/',
+      children: 'structure',
+    },
+  ],
+  '/self_manage/': [
+    go_home,
+    {
+      text: '个人管理',
+      icon: 'selfmanage',
+      link: '/self_manage/',
+      children: 'structure',
+    },
+  ],
+  '/theory/': [
+    go_home,
+    {
+      text: '理论研究',
+      icon: 'principles',
+      link: '/theory/',
       children: 'structure',
     },
   ],

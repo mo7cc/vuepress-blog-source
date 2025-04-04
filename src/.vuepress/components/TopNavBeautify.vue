@@ -14,7 +14,7 @@ const CheckScrollTopClass = () => {
   const themeElm = themeElms[0];
 
   const blogHeroElms = document.getElementsByClassName('vp-blog-hero');
-  let blogHeroElm = null;
+  let blogHeroElm;
   if (blogHeroElms.length > 0) {
     blogHeroElm = blogHeroElms[0];
   }

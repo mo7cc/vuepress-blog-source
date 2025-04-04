@@ -1,3 +1,4 @@
+@import '@src/.vuepress/styles/bounce-icon.scss';
 // place your custom styles here
 .none {
   width: 0;
@@ -14,24 +15,25 @@
     display: flex;
   }
 
-  .footer-icp {
+  .mo7-footer-icp {
     font-size: 14px;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #fff;
+    color: inherit;
     & > img {
       width: 14px;
       margin-right: 4px;
     }
   }
-  .footer-about {
+  .mo7-footer-about {
     padding: 2px 3px;
     border-radius: 3px;
     position: relative;
-    color: #fff;
+    color: inherit;
     &:hover {
       background-color: rgba($color: #0c7bf4, $alpha: 0.8);
+      color: #fff;
     }
   }
 }
@@ -47,7 +49,6 @@
 }
 
 // 图片合组
-
 .ImgGroup {
   display: flex;
   align-items: center;
@@ -68,4 +69,140 @@
 .vp-blog-hero-title,
 .vp-site-name {
   font-family: 'mo7_font';
+}
+
+// 回到顶部按钮半透明
+.vp-back-to-top-button {
+  opacity: 0.7;
+}
+
+// 项目卡片添加阴影
+.vp-project-card {
+  box-shadow: 0 2px 6px 2px var(--vp-c-shadow);
+  &:hover {
+    box-shadow: 0 1px 3px 1px var(--vp-c-shadow);
+  }
+}
+
+// 文章分割线变成小汽车
+hr {
+  position: relative;
+  margin: 0.8rem auto;
+  box-sizing: content-box;
+  overflow: visible;
+  height: 1rem;
+  border: none;
+  cursor: pointer;
+  background: transparent;
+  &::before {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    z-index: 1;
+    content: '';
+    width: calc(100% - 0.25rem);
+    height: 0;
+    border-width: 0.125rem;
+    border-style: dashed;
+    opacity: 0.2;
+  }
+  &::after {
+    position: absolute;
+    line-height: 1.6rem;
+    top: -0.4rem;
+    left: 1%;
+    font-family: 'iconfont';
+    content: '\e66c';
+    z-index: 2;
+    font-size: 1.6rem;
+    transition: 1s;
+    opacity: 0.2;
+  }
+  &:hover {
+    &::after {
+      opacity: 0.8;
+      left: calc(99% - 1.6rem);
+    }
+  }
+}
+
+// 美化标签hover之后的小标签
+[aria-label][data-balloon-pos]:after {
+  border-radius: 0.6rem;
+}
+[aria-label][data-balloon-pos]:hover:before,
+[aria-label][data-balloon-pos]:hover:after,
+[aria-label][data-balloon-pos][data-balloon-visible]:before,
+[aria-label][data-balloon-pos][data-balloon-visible]:after,
+[aria-label][data-balloon-pos]:not([data-balloon-nofocus]):focus:before,
+[aria-label][data-balloon-pos]:not([data-balloon-nofocus]):focus:after {
+  opacity: 0.8;
+  font-family: none;
+}
+
+// 卡片半透明
+@mixin articleLightBg {
+  $my-alpha: 0.6;
+  background: rgba($color: #fff, $alpha: $my-alpha);
+  background-color: rgba($color: #fff, $alpha: $my-alpha);
+}
+[data-theme='light'] {
+  .theme-container {
+    .vp-page {
+      .vp-blogger-info {
+        @include articleLightBg;
+      }
+      .vp-blog-infos {
+        @include articleLightBg;
+      }
+      .vp-article-item {
+        @include articleLightBg;
+      }
+    }
+
+    .vp-pagination-nav input {
+      @include articleLightBg;
+    }
+    .vp-pagination-button {
+      @include articleLightBg;
+    }
+    .vp-pagination-number div {
+      @include articleLightBg;
+      &.active {
+        background-color: var(--theme-color);
+      }
+    }
+  }
+}
+@mixin articleDarkBg {
+  $my-alpha: 0.7;
+  background: rgba($color: #000, $alpha: $my-alpha);
+  background-color: rgba($color: #000, $alpha: $my-alpha);
+}
+[data-theme='dark'] {
+  .theme-container {
+    .vp-page {
+      .vp-blogger-info {
+        @include articleDarkBg;
+      }
+      .vp-blog-infos {
+        @include articleDarkBg;
+      }
+      .vp-article-item {
+        @include articleDarkBg;
+      }
+      .vp-pagination-nav input {
+        @include articleDarkBg;
+      }
+      .vp-pagination-button {
+        @include articleDarkBg;
+      }
+      .vp-pagination-number div {
+        @include articleDarkBg;
+        &.active {
+          background-color: var(--theme-color);
+        }
+      }
+    }
+  }
 }

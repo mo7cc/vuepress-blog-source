@@ -1,127 +1,127 @@
 <script setup lang="ts">
-import { ref, onMounted, nextTick } from 'vue';
-import { useRouter } from 'vue-router';
-import axios from 'axios';
-let hitokotoUrl = 'https://v1.hitokoto.cn';
+// import { ref, onMounted, nextTick } from 'vue';
+// import { useRouter } from 'vue-router';
+// import axios from 'axios';
+// let hitokotoUrl = 'https://v1.hitokoto.cn';
 
-const InsertText = (data) => {
-  const Win: any = window;
+// const InsertText = (data) => {
+//   const Win: any = window;
 
-  clearInterval(Win.Mo7HitokotoTimer);
+//   clearInterval(Win.Mo7HitokotoTimer);
 
-  const hitokotoElm = document.getElementById('hitokoto_text');
-  if (!hitokotoElm) {
-    return;
-  }
+//   const hitokotoElm = document.getElementById('hitokoto_text');
+//   if (!hitokotoElm) {
+//     return;
+//   }
 
-  const authorElm = document.getElementById('hitokoto_author');
-  if (!authorElm) {
-    return;
-  }
-  authorElm.innerHTML = `——「${data.from}」`;
-  authorElm.style.opacity = '0';
+//   const authorElm = document.getElementById('hitokoto_author');
+//   if (!authorElm) {
+//     return;
+//   }
+//   authorElm.innerHTML = `——「${data.from}」`;
+//   authorElm.style.opacity = '0';
 
-  const arr = data.hitokoto.split('');
+//   const arr = data.hitokoto.split('');
 
-  let index = 0;
-  let indexMax = arr.length - 1;
-  const innerTextArr = [];
-  let isReverse = false;
-  let stopNumMax = 10; // 停留 等待时长
-  let stopNum = stopNumMax;
+//   let index = 0;
+//   let indexMax = arr.length - 1;
+//   const innerTextArr: any = [];
+//   let isReverse = false;
+//   let stopNumMax = 10; // 停留 等待时长
+//   let stopNum = stopNumMax;
 
-  let doneNumMax = 6; // 完成 等待时长
-  let doneNum = doneNumMax;
+//   let doneNumMax = 6; // 完成 等待时长
+//   let doneNum = doneNumMax;
 
-  Win.Mo7HitokotoTimer = setInterval(() => {
-    const el = arr[index];
+//   Win.Mo7HitokotoTimer = setInterval(() => {
+//     const el = arr[index];
 
-    if (stopNum == stopNumMax && doneNum == doneNumMax) {
-      if (isReverse) {
-        index--;
-        innerTextArr.pop();
-      } else {
-        index++;
-        innerTextArr.push(el);
-      }
-    }
-    hitokotoElm.innerHTML = innerTextArr.join('');
+//     if (stopNum == stopNumMax && doneNum == doneNumMax) {
+//       if (isReverse) {
+//         index--;
+//         innerTextArr.pop();
+//       } else {
+//         index++;
+//         innerTextArr.push(el);
+//       }
+//     }
+//     hitokotoElm.innerHTML = innerTextArr.join('');
 
-    if (arr.length > 5) {
-      if (innerTextArr.length > arr.length / 2) {
-        authorElm.style.opacity = '1';
-      }
-      if (innerTextArr.length < arr.length / 3) {
-        authorElm.style.opacity = '0';
-      }
-    } else {
-      authorElm.style.opacity = '1';
-    }
+//     if (arr.length > 5) {
+//       if (innerTextArr.length > arr.length / 2) {
+//         authorElm.style.opacity = '1';
+//       }
+//       if (innerTextArr.length < arr.length / 3) {
+//         authorElm.style.opacity = '0';
+//       }
+//     } else {
+//       authorElm.style.opacity = '1';
+//     }
 
-    if (innerTextArr.length >= arr.length) {
-      stopNum--;
-      authorElm.style.opacity = '1';
-      if (stopNum == 0) {
-        stopNum = stopNumMax;
-      }
-    }
+//     if (innerTextArr.length >= arr.length) {
+//       stopNum--;
+//       authorElm.style.opacity = '1';
+//       if (stopNum == 0) {
+//         stopNum = stopNumMax;
+//       }
+//     }
 
-    if (innerTextArr.length == 0) {
-      doneNum--;
-      authorElm.style.opacity = '0';
-      if (doneNum == 0) {
-        doneNum = doneNumMax;
-        clearInterval(Win.Mo7HitokotoTimer);
-        GetWord();
-      }
-    }
+//     if (innerTextArr.length == 0) {
+//       doneNum--;
+//       authorElm.style.opacity = '0';
+//       if (doneNum == 0) {
+//         doneNum = doneNumMax;
+//         clearInterval(Win.Mo7HitokotoTimer);
+//         GetWord();
+//       }
+//     }
 
-    if (index > indexMax) {
-      isReverse = !isReverse;
-      index = indexMax;
-    }
+//     if (index > indexMax) {
+//       isReverse = !isReverse;
+//       index = indexMax;
+//     }
 
-    if (index < 0) {
-      isReverse = !isReverse;
-      index = 0;
-    }
-  }, 200);
-};
+//     if (index < 0) {
+//       isReverse = !isReverse;
+//       index = 0;
+//     }
+//   }, 200);
+// };
 
-const GetWord = () => {
-  const Elm = document.getElementById('mo7-hitokoto-wrapper');
-  if (!Elm) {
-    return;
-  }
+// const GetWord = () => {
+//   const Elm = document.getElementById('mo7-hitokoto-wrapper');
+//   if (!Elm) {
+//     return;
+//   }
 
-  axios({
-    method: 'get',
-    url: hitokotoUrl,
-    params: {},
-  })
-    .then((response) => {
-      InsertText(response.data);
-    })
-    .catch(() => {
-      hitokotoUrl = 'https://international.v1.hitokoto.cn';
-      GetWord();
-    });
-};
+//   axios({
+//     method: 'get',
+//     url: hitokotoUrl,
+//     params: {},
+//   })
+//     .then((response) => {
+//       InsertText(response.data);
+//     })
+//     .catch(() => {
+//       hitokotoUrl = 'https://international.v1.hitokoto.cn';
+//       GetWord();
+//     });
+// };
 
-onMounted(() => {
-  nextTick(() => {
-    GetWord();
-  });
+// onMounted(() => {
+//   nextTick(() => {
+//     GetWord();
+//   });
 
-  const router = useRouter();
-  router.afterEach((to) => {
-    nextTick(() => {
-      setTimeout(() => {
-        GetWord();
-      }, 50);
-    });
-  });
-});
+//   const router = useRouter();
+//   router.afterEach((to) => {
+//     nextTick(() => {
+//       setTimeout(() => {
+//         GetWord();
+//       }, 50);
+//     });
+//   });
+// });
 </script>
 
 <template>
@@ -153,12 +153,13 @@ onMounted(() => {
 }
 
 #mo7-hitokoto-wrapper {
+  padding: 30px;
   font-weight: 600;
+  font-family: Arial, '华文行楷';
   .word {
     position: relative;
     padding: 1rem 2.5rem;
     text-align: center;
-    font-family: '华文行楷';
     .left {
       position: absolute;
       left: 0;
@@ -175,15 +176,21 @@ onMounted(() => {
     position: relative;
     display: inline-block;
     font-size: 1.8rem;
-    &::after {
-      content: '|';
-      font-size: 1.3rem;
-      animation: san 0.8s infinite;
-    }
+    // &::after {
+    //   content: '|';
+    //   font-size: 1.3rem;
+    //   animation: san 0.8s infinite;
+    // }
+  }
+  #hitokoto_text2 {
+    max-width: 80vw;
+    position: relative;
+    display: inline-block;
+    font-size: 1.4rem;
+    font-style: italic;
   }
   #hitokoto_author {
     transition: 1s;
-    font-family: 'STXingkai';
     font-style: italic;
     font-size: 1.2rem;
     font-weight: 400;
@@ -200,5 +207,9 @@ onMounted(() => {
   50% {
     opacity: 0;
   }
+}
+
+[vp-content] {
+  @extend .theme-hope-content;
 }
 </style>

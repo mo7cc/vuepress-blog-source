@@ -330,4 +330,8 @@ html[data-theme='dark'] {
     }
   }
 }
+
+[vp-content] {
+  @extend .theme-hope-content;
+}
 </style>

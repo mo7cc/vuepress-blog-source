@@ -7,7 +7,7 @@ import MyIcon from './MyIcon.vue';
 
 let DeviceInfo: any = ref({});
 
-let ImageArr = ref([]);
+let ImageArr: any = ref([]);
 let ShowPreviewBox = ref(false);
 let CurrentImgIdx = ref(0);
 
@@ -44,7 +44,7 @@ function shrinkFunc() {
 }
 
 function fullscreenFunc() {
-  const imgElm = document.getElementById('Mo7PreviewBox-img');
+  const imgElm: any = document.getElementById('Mo7PreviewBox-img');
   if (!imgElm) {
     return;
   }
@@ -103,7 +103,7 @@ function ImageClick(e) {
   const src = elm.getAttribute('src');
   let index = CurrentImgIdx.value;
   for (let i = 0; i < ImageArr.value.length; i++) {
-    const el = ImageArr.value[i];
+    const el: any = ImageArr.value[i];
     if (el.src === src) {
       index = i;
       break;
@@ -149,18 +149,18 @@ function keyUpFunc(event) {
 }
 
 function InitPreviewImage(type) {
-  let contentElms = document.getElementsByClassName('theme-hope-content');
-  let contentElm = null;
-  if (contentElms.length > 0) {
-    contentElm = contentElms[0];
-  }
+  let contentElm = document.getElementById('markdown-content');
+  // let contentElm;
+  // if (contentElms.length > 0) {
+  //   contentElm = contentElms[0];
+  // }
 
   if (!contentElm) {
     return;
   }
 
   const images = contentElm.getElementsByTagName('img');
-  const imaArr = [];
+  const imaArr: any = [];
   for (let i = 0; i < images.length; i++) {
     const elm = images[i];
     if (type === 'bind') {
@@ -207,13 +207,17 @@ function Mousemove(e) {
 
   // 移动赋值
   const imgElm = document.getElementById('Mo7PreviewBox-img');
-  imgElm.style.left = left + 'px';
-  imgElm.style.top = top + 'px';
+  if (imgElm) {
+    imgElm.style.left = left + 'px';
+    imgElm.style.top = top + 'px';
+  }
 }
 
 function ImgMouseUp() {
   const imgElm = document.getElementById('Mo7PreviewBox-img');
-  imgElm.style.cursor = 'default';
+  if (imgElm) {
+    imgElm.style.cursor = 'default';
+  }
   mouseStatus = false;
   mouseDownX = 0;
   mouseDownY = 0;
@@ -222,8 +226,10 @@ function ImgMouseUp() {
 }
 
 function ImgMouseDown(e) {
-  const imgElm = document.getElementById('Mo7PreviewBox-img');
-  imgElm.style.cursor = 'move';
+  const imgElm: any = document.getElementById('Mo7PreviewBox-img');
+  if (imgElm) {
+    imgElm.style.cursor = 'move';
+  }
   mouseStatus = true;
 
   mouseDownX = e.clientX;
@@ -353,7 +359,7 @@ onMounted(() => {
 </template>
 
 <style lang="scss">
-.theme-hope-content {
+#markdown-content {
   img {
     cursor: pointer;
   }

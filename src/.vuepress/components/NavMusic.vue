@@ -167,7 +167,7 @@ onMounted(() => {
 #GlobalAPlayer {
   .aplayer-list-title,
   .aplayer-title {
-    color: var(--theme-color);
+    color: rgb(60, 60, 67);
   }
 }
 
