@@ -114,11 +114,11 @@ onMounted(() => {
 }
 
 html[data-theme='light'] {
-  --border-color: rgba(44, 62, 80, 0.4);
+  // --vp-c-gutter: rgba(44, 62, 80, 0.4);
 }
 
 html[data-theme='dark'] {
-  --border-color: rgba(158, 158, 158, 0.5);
+  --vp-c-gutter: rgba(158, 158, 158, 0.5);
 }
 
 #mo7_BlogBg {
