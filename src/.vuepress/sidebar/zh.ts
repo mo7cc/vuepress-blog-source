@@ -7,6 +7,7 @@ const go_home = {
 };
 
 export const zhSidebar = sidebar({
+  '/': [],
   '/about/': [
     go_home,
     {
