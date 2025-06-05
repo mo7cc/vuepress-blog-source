@@ -266,7 +266,7 @@ onMounted(() => {
   bottom: 4.75rem;
 }
 
-.vp-blog-hero.fullscreen .vp-blog-mask {
+.vp-blog-hero.hero-fullscreen .vp-blog-mask {
   background-repeat: no-repeat;
   background-size: cover;
   background-position-y: top;
@@ -274,7 +274,7 @@ onMounted(() => {
   background-attachment: fixed;
 }
 
-.vp-blog-hero.fullscreen {
+.vp-blog-hero.hero-fullscreen {
   z-index: 5;
   height: 100vh !important;
   margin: 0;

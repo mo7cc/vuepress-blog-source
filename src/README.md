@@ -1,12 +1,12 @@
 ---
 home: true
-layout: BlogHome
+layout: Blog
 icon: home
 heroImage: /pwa/144.png
 bgImage: //file.mo7.cc/api/public/bz?idx=1
 heroText: 墨七
 heroFullScreen: true
-tagline: 与其感慨路难行，不如马上出发。
+tagline: 墨染七弦月，笔耕半亩田。
 description: 墨七,博客,记录,分享
 article: false
 index: false
@@ -67,23 +67,22 @@ projects:
     <img class="vp-blog-hero-image" src="//file.mo7.cc/static/lxh_gif/lxh_71.gif" alt="" srcset="" />
   </a>
   <a target="_blank" class="link  link-2" href="https://mo7cc.github.io">
-    <h1 class="vp-blog-hero-title">
-      墨七<span class="vp-blog-hero-subtitle">(mo7.cc)</span>
-    </h1>
+    <h1 class="vp-blog-hero-title">墨七<span class="vp-blog-hero-subtitle">(mo7.cc)</span></h1>
   </a>
-  <a target="_blank" class="link  link-3" href="/posts/catalog.html">
+  <h3 class="mo7-signature">墨染七弦月,笔耕半亩田.</h3>
+  <a target="_blank" class="link link-3" href="/posts/catalog.html">
     <h2>My Blog</h2>
     <span>https://mo7.cc</span>
   </a>
-  <a target="_blank" class="link  link-4" href="https://github.com/mo7cc">
+  <a target="_blank" class="link link-4" href="https://github.com/mo7cc">
     <h2>My Github</h2>
     <span>https://github.com/mo7cc</span>
   </a>
-  <a target="_blank" class="link  link-5" href="https://otter-trade.github.io">
+  <a target="_blank" class="link link-5" href="https://otter-trade.github.io">
     <h2>OtterTrade.com</h2>
     <span>https://otter-trade.github.io</span>
   </a>
-  <a target="_blank" class="link  link-6" href="mailto: meichangliang@outlook.com">
+  <a target="_blank" class="link link-6" href="mailto: meichangliang@outlook.com">
     <h2>E-mail</h2>
     <span>meichangliang@outlook.com</span>
   </a>
@@ -96,5 +95,5 @@ projects:
     <span id="hitokoto_text2"> Better to run than curse the road. </span>
     <div class="right">』</div>
   </div>
-  <div id="hitokoto_author">——「DOTA2 克林克兹」</div>
+  <!-- <div id="hitokoto_author">——「DOTA2 克林克兹」</div> -->
 </div>

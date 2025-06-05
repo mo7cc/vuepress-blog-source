@@ -16,16 +16,6 @@ https://theme-hope.vuejs.press/
 
 https://theme-hope.vuejs.press/zh/demo/blog-home.html
 
-### 音乐下载
-
-https://tools.liumingye.cn/music
-
-https://www.33z3.com/
-
-https://bailemi.com/
-
-https://zhuanlan.zhihu.com/p/577560145
-
 ### 评论服务
 
 文档

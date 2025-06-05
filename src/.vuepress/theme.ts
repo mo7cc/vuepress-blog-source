@@ -48,7 +48,7 @@ export default hopeTheme({
   blog: {
     name: '墨七',
     avatar: '//file.mo7.cc/static/lxh_gif/lxh_71.gif',
-    description: '与其感慨路难行，不如马上出发。',
+    description: '墨染七弦月，笔耕半亩田。',
     intro: 'https://mo7.cc/about/me.html',
     medias: {
       Email: 'mailto:mo7@mo7.cc',
@@ -72,9 +72,9 @@ export default hopeTheme({
       sidebar: zhSidebar,
       blog: {
         name: '墨七',
-        description: '与其感慨路难行，不如马上出发。',
+        description: '墨染七弦月，笔耕半亩田。',
         intro: '/about/me.html',
-        timeline: '与其感慨路难行，不如马上出发。',
+        timeline: '墨染七弦月，笔耕半亩田。',
       },
     },
     // '/en/': {

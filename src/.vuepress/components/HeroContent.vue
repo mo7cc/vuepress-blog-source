@@ -2,55 +2,33 @@
 import { onMounted, nextTick } from 'vue';
 import { useRouter } from 'vue-router';
 
-const RemoveVpElms = () => {
-  const vpBlogImage = document.querySelector('.vp-blog-hero > .vp-blog-hero-image');
-  if (vpBlogImage) {
-    vpBlogImage.remove();
-  }
-  const vpBlogTitle = document.querySelector('.vp-blog-hero > .vp-blog-hero-title');
-  if (vpBlogTitle) {
-    vpBlogTitle.remove();
-  }
-  const vpBlogDescription = document.querySelector('.vp-blog-hero > .vp-blog-hero-description');
-  if (vpBlogDescription) {
-    vpBlogDescription.remove();
-  }
-};
-
-const InnerMo7Content = () => {
+const ReplaceHeroContent = () => {
   const mo7HeroContentElm = document.getElementById('mo7-blog-hero-content');
   if (!mo7HeroContentElm) {
     return;
   }
-  const vpSlideDownButton = document.querySelector('.vp-blog-hero > .slide-down-button');
-  if (!vpSlideDownButton) {
-    return;
+
+  const vpBlogHeroImage = document.querySelector('.vp-blog-hero-image');
+  if (vpBlogHeroImage) {
+    vpBlogHeroImage.remove();
   }
-
-  const blogHeroElms = document.getElementsByClassName('vp-blog-hero');
-  if (blogHeroElms.length < 1) {
-    return null;
+  const vpBlogHeroInfo = document.querySelector('.vp-blog-hero-info');
+  if (vpBlogHeroInfo) {
+    vpBlogHeroInfo.innerHTML = '';
+    vpBlogHeroInfo.appendChild(mo7HeroContentElm);
   }
-  const blogHeroElm = blogHeroElms[0];
-
-  blogHeroElm.insertBefore(mo7HeroContentElm, vpSlideDownButton);
-};
-
-const EditHeroContent = () => {
-  RemoveVpElms();
-  InnerMo7Content();
 };
 
 onMounted(() => {
   nextTick(() => {
-    EditHeroContent();
+    ReplaceHeroContent();
   });
 
   const router = useRouter();
   router.afterEach((to) => {
     nextTick(() => {
       setTimeout(() => {
-        EditHeroContent();
+        ReplaceHeroContent();
       }, 50);
     });
   });
@@ -59,17 +37,12 @@ onMounted(() => {
 
 <template>
   <ClientOnly>
-    <div class="none">Bing壁纸</div>
+    <div class="none">HeroContent修改</div>
   </ClientOnly>
 </template>
 
 <style lang="scss">
 // 隐藏元素
-.vp-blog-hero > .vp-blog-hero-image,
-.vp-blog-hero > .vp-blog-hero-title,
-.vp-blog-hero > .vp-blog-hero-description {
-  display: none;
-}
 
 #mo7-blog-hero-content {
   display: flex;
@@ -121,6 +94,18 @@ onMounted(() => {
       backdrop-filter: blur(8px);
       text-decoration: underline;
     }
+  }
+  .mo7-signature {
+    margin: 0 auto;
+    text-align: center;
+    font-family: Arial, '华文行楷';
+    font-style: italic;
+    font-size: 1.8rem;
+    font-weight: 400;
+    margin-bottom: 1rem;
+    margin-top: 0.6rem;
+    animation: 1.6s showAnimation;
+    text-shadow: 5px 3px 3px rgba(0, 0, 0, 0.7);
   }
   .link-1 {
     animation: 1s showAnimation;

@@ -31,7 +31,7 @@ export default defineUserConfig({
     '/': {
       lang: 'zh-CN',
       title: '墨七',
-      description: '墨七 - 与其感慨路难行，不如马上出发。',
+      description: '墨七 - 墨染七弦月，笔耕半亩田。',
     },
     // '/en/': {
     //   lang: 'en',

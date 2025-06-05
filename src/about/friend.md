@@ -9,7 +9,7 @@ permalink: /about/friend_links.html
 
 <VPCard
   title="墨七"
-  desc="与其感慨路难行，不如马上出发。"
+  desc="墨染七弦月，笔耕半亩田。"
   logo="https://file.mo7.cc/static/lxh_gif/lxh_71.gif"
   link="https://mo7.cc"
 />
@@ -116,7 +116,7 @@ permalink: /about/friend_links.html
 
 ```yaml
 昵称: 墨七
-描述: 与其感慨路难行，不如马上出发。
+描述: 墨染七弦月，笔耕半亩田。
 地址: https://mo7.cc
 头像: https://file.mo7.cc/static/lxh_gif/lxh_71.gif
 ```
@@ -126,7 +126,7 @@ permalink: /about/friend_links.html
 ```json
 {
   "name": "墨七",
-  "description": "与其感慨路难行，不如马上出发。",
+  "description": "墨染七弦月，笔耕半亩田。",
   "link": "https://mo7.cc",
   "avatar": "https://file.mo7.cc/static/lxh_gif/lxh_71.gif"
 }
