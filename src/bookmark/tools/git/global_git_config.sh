@@ -10,7 +10,7 @@ git config --global user.name 墨七
 git config user.name
 
 # 设置邮箱(替换成你自己的邮箱)
-git config --global user.email meichangliang@outlook.com
+git config --global user.email mo7cc@outlook.com
 
 # 查看设置好的邮箱
 git config user.email
@@ -38,3 +38,9 @@ git config --global init.defaultBranch main
 
 # 关闭分支显示分页 显示
 git config --global pager.branch false
+
+# 缓冲区增加到 512MB
+git config --global http.postBuffer 524288000
+
+# 弃用 htpp 压缩
+git config --global http.compression 0

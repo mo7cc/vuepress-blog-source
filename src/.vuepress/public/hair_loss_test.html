@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>脱发归因AI测试</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        padding: 20px;
+        background-color: #f9f9f9;
+      }
+
+      h1 {
+        text-align: center;
+        color: #333;
+        margin-bottom: 20px;
+      }
+
+      form {
+        background-color: white;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        margin-bottom: 20px;
+      }
+
+      label {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: 500;
+      }
+
+      .question-group {
+        margin-bottom: 20px;
+        border-bottom: 1px solid #eee;
+        padding-bottom: 15px;
+      }
+
+      .question-group:last-child {
+        border-bottom: none;
+      }
+
+      input[type='checkbox'],
+      input[type='radio'] {
+        margin-right: 5px;
+        margin-bottom: 8px;
+      }
+
+      button {
+        padding: 12px 24px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 3px;
+        cursor: pointer;
+        margin-top: 10px;
+        font-size: 16px;
+        transition: background-color 0.3s ease;
+      }
+
+      button:hover {
+        background-color: #0056b3;
+      }
+
+      #result {
+        display: none;
+        margin-top: 20px;
+        padding: 20px;
+        background-color: #f0f7ff;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+
+      #result h2 {
+        color: #007bff;
+        margin-top: 0;
+      }
+
+      .result-section {
+        margin-bottom: 15px;
+      }
+
+      .result-section h3 {
+        color: #333;
+        margin-bottom: 5px;
+      }
+
+      .result-section p {
+        margin: 0;
+        line-height: 1.5;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1>脱发归因AI测试</h1>
+    <form id="testForm">
+      <!-- 脱发区域（可多选） -->
+      <div class="question-group">
+        <label for="hairLossArea">脱发区域（可多选）</label><br />
+        <input type="checkbox" id="forehead" name="hairLossArea" value="前额脱发" />
+        <label for="forehead">前额脱发</label><br />
+        <input type="checkbox" id="crown" name="hairLossArea" value="头顶脱发" />
+        <label for="crown">头顶脱发</label><br />
+        <input type="checkbox" id="temples" name="hairLossArea" value="两鬓脱发" />
+        <label for="temples">两鬓脱发</label><br />
+        <input type="checkbox" id="overall" name="hairLossArea" value="整体稀疏" />
+        <label for="overall">整体稀疏</label><br />
+      </div>
+
+      <!-- 身体状况（可多选） -->
+      <div class="question-group">
+        <label for="physicalCondition">身体状况（可多选）</label><br />
+        <input type="checkbox" id="kidneyDeficiency" name="physicalCondition" value="肾虚房事不满意" />
+        <label for="kidneyDeficiency">肾虚房事不满意</label><br />
+        <input type="checkbox" id="spleenWeakness" name="physicalCondition" value="脾虚吃饭出汗" />
+        <label for="spleenWeakness">脾虚吃饭出汗</label><br />
+        <input type="checkbox" id="qiBloodDeficiency" name="physicalCondition" value="气血不足脸色差没精神" />
+        <label for="qiBloodDeficiency">气血不足脸色差没精神</label><br />
+        <input type="checkbox" id="liverQiStagnation" name="physicalCondition" value="肝郁气滞爱叹气失眠易醒" />
+        <label for="liverQiStagnation">肝郁气滞爱叹气失眠易醒</label><br />
+      </div>
+
+      <!-- 是否有遗传（单选） -->
+      <div class="question-group">
+        <label for="heredity">是否有遗传（单选）</label><br />
+        <input type="radio" id="heredityYes" name="heredity" value="是" />
+        <label for="heredityYes">是</label><br />
+        <input type="radio" id="heredityNo" name="heredity" value="否" />
+        <label for="heredityNo">否</label><br />
+      </div>
+
+      <!-- 是否产后脱发（单选） -->
+      <div class="question-group">
+        <label for="postpartumHairLoss">是否产后脱发（单选）</label><br />
+        <input type="radio" id="postpartumYes" name="postpartumHairLoss" value="是" />
+        <label for="postpartumYes">是</label><br />
+        <input type="radio" id="postpartumNo" name="postpartumHairLoss" value="否" />
+        <label for="postpartumNo">否</label><br />
+      </div>
+
+      <!-- 是否缺乏营养（根据身体状态单选） -->
+      <div class="question-group">
+        <label for="nutrition">是否缺乏营养（根据身体状态单选）</label><br />
+        <input type="radio" id="nutritionTired" name="nutrition" value="身体经常疲倦（缺乏）" />
+        <label for="nutritionTired">身体经常疲倦（缺乏）</label><br />
+        <input type="radio" id="nutritionEnergetic" name="nutrition" value="感觉精神很好（不缺乏）" />
+        <label for="nutritionEnergetic">感觉精神很好（不缺乏）</label><br />
+      </div>
+
+      <!-- 脱发时长（单选） -->
+      <div class="question-group">
+        <label for="hairLossDuration">脱发时长（单选）</label><br />
+        <input type="radio" id="duration3Years" name="hairLossDuration" value="脱发3年" />
+        <label for="duration3Years">脱发3年</label><br />
+        <input type="radio" id="duration5Years" name="hairLossDuration" value="脱发5年" />
+        <label for="duration5Years">脱发5年</label><br />
+        <input type="radio" id="duration10Years" name="hairLossDuration" value="脱发10年" />
+        <label for="duration10Years">脱发10年</label><br />
+        <input type="radio" id="duration15Years" name="hairLossDuration" value="脱发15年以上" />
+        <label for="duration15Years">脱发15年以上</label><br />
+      </div>
+
+      <!-- 年龄范围（单选） -->
+      <div class="question-group">
+        <label for="ageRange">年龄范围（单选）</label><br />
+        <input type="radio" id="age10_20" name="ageRange" value="10 - 20岁" />
+        <label for="age10_20">10 - 20岁</label><br />
+        <input type="radio" id="age20_30" name="ageRange" value="20 - 30岁" />
+        <label for="age20_30">20 - 30岁</label><br />
+        <input type="radio" id="age30_40" name="ageRange" value="30 - 40岁" />
+        <label for="age30_40">30 - 40岁</label><br />
+      </div>
+
+      <!-- 熬夜情况（单选） -->
+      <div class="question-group">
+        <label for="sleepTime">熬夜情况（单选）</label><br />
+        <input type="radio" id="sleep10" name="sleepTime" value="晚上10点入睡" />
+        <label for="sleep10">晚上10点入睡</label><br />
+        <input type="radio" id="sleep11" name="sleepTime" value="晚上11点入睡" />
+        <label for="sleep11">晚上11点入睡</label><br />
+        <input type="radio" id="sleep12" name="sleepTime" value="晚上12点入睡" />
+        <label for="sleep12">晚上12点入睡</label><br />
+      </div>
+
+      <!-- 心理压力1（单选） -->
+      <div class="question-group">
+        <label for="stress1">心理压力1（单选）</label><br />
+        <input type="radio" id="stress1Often" name="stress1" value="经常担心某事" />
+        <label for="stress1Often">经常担心某事</label><br />
+        <input type="radio" id="stress1Occasionally" name="stress1" value="偶尔担心某事" />
+        <label for="stress1Occasionally">偶尔担心某事</label><br />
+      </div>
+
+      <!-- 心理压力2（单选） -->
+      <div class="question-group">
+        <label for="stress2">心理压力2（单选）</label><br />
+        <input type="radio" id="stress2Often" name="stress2" value="经常烦躁" />
+        <label for="stress2Often">经常烦躁</label><br />
+        <input type="radio" id="stress2Stable" name="stress2" value="情绪稳定" />
+        <label for="stress2Stable">情绪稳定</label><br />
+      </div>
+
+      <!-- 心理压力3（单选） -->
+      <div class="question-group">
+        <label for="stress3">心理压力3（单选）</label><br />
+        <input type="radio" id="stress3Depressed" name="stress3" value="有抑郁" />
+        <label for="stress3Depressed">有抑郁</label><br />
+        <input type="radio" id="stress3NotDepressed" name="stress3" value="没有抑郁" />
+        <label for="stress3NotDepressed">没有抑郁</label><br />
+      </div>
+
+      <!-- 心理压力4（单选） -->
+      <div class="question-group">
+        <label for="stress4">心理压力4（单选）</label><br />
+        <input type="radio" id="stress4SighOften" name="stress4" value="经常叹气" />
+        <label for="stress4SighOften">经常叹气</label><br />
+        <input type="radio" id="stress4NotSigh" name="stress4" value="没有叹气" />
+        <label for="stress4NotSigh">没有叹气</label><br />
+      </div>
+
+      <!-- 饮食是否油腻（单选） -->
+      <div class="question-group">
+        <label for="dietGreasy">饮食是否油腻（单选）</label><br />
+        <input type="radio" id="dietGreasyYes" name="dietGreasy" value="是" />
+        <label for="dietGreasyYes">是</label><br />
+        <input type="radio" id="dietGreasyNo" name="dietGreasy" value="否" />
+        <label for="dietGreasyNo">否</label><br />
+      </div>
+
+      <!-- 饮食是否偏咸（单选） -->
+      <div class="question-group">
+        <label for="dietSalty">饮食是否偏咸（单选）</label><br />
+        <input type="radio" id="dietSaltyYes" name="dietSalty" value="是" />
+        <label for="dietSaltyYes">是</label><br />
+        <input type="radio" id="dietSaltyNo" name="dietSalty" value="否" />
+        <label for="dietSaltyNo">否</label><br />
+      </div>
+
+      <!-- 是否抽烟（单选） -->
+      <div class="question-group">
+        <label for="smoking">是否抽烟（单选）</label><br />
+        <input type="radio" id="smokingYes" name="smoking" value="是" />
+        <label for="smokingYes">是</label><br />
+        <input type="radio" id="smokingNo" name="smoking" value="否" />
+        <label for="smokingNo">否</label><br />
+      </div>
+
+      <!-- 是否服用激素类药物（单选） -->
+      <div class="question-group">
+        <label for="hormoneMedication">是否服用激素类药物（单选）</label><br />
+        <input type="radio" id="hormoneYes" name="hormoneMedication" value="是" />
+        <label for="hormoneYes">是</label><br />
+        <input type="radio" id="hormoneNo" name="hormoneMedication" value="否" />
+        <label for="hormoneNo">否</label><br />
+      </div>
+
+      <!-- 是否有化学染烫（单选） -->
+      <div class="question-group">
+        <label for="chemicalPerm">是否有化学染烫（单选）</label><br />
+        <input type="radio" id="chemicalPermYes" name="chemicalPerm" value="是" />
+        <label for="chemicalPermYes">是</label><br />
+        <input type="radio" id="chemicalPermNo" name="chemicalPerm" value="否" />
+        <label for="chemicalPermNo">否</label><br />
+      </div>
+
+      <!-- 是否长期使用含特定化学物质的洗发水（单选） -->
+      <div class="question-group">
+        <label for="shampooChemicals">是否长期使用含特定化学物质的洗发水（单选）</label><br />
+        <input type="radio" id="shampooChemicalsYes" name="shampooChemicals" value="是" />
+        <label for="shampooChemicalsYes">是</label><br />
+        <input type="radio" id="shampooChemicalsNo" name="shampooChemicals" value="否" />
+        <label for="shampooChemicalsNo">否</label><br />
+      </div>
+
+      <!-- 是否使用护发素（单选） -->
+      <div class="question-group">
+        <label for="conditioner">是否使用护发素（单选）</label><br />
+        <input type="radio" id="conditionerYes" name="conditioner" value="是" />
+        <label for="conditionerYes">是</label><br />
+        <input type="radio" id="conditionerNo" name="conditioner" value="否" />
+        <label for="conditionerNo">否</label><br />
+      </div>
+
+      <!-- 头发是否细软（单选） -->
+      <div class="question-group">
+        <label for="fineHair">头发是否细软（单选）</label><br />
+        <input type="radio" id="fineHairYes" name="fineHair" value="是" />
+        <label for="fineHairYes">是</label><br />
+        <input type="radio" id="fineHairNo" name="fineHair" value="否" />
+        <label for="fineHairNo">否</label><br />
+      </div>
+
+      <!-- 是否有头皮屑（单选） -->
+      <div class="question-group">
+        <label for="dandruff">是否有头皮屑（单选）</label><br />
+        <input type="radio" id="dandruffYes" name="dandruff" value="有" />
+        <label for="dandruffYes">有</label><br />
+        <input type="radio" id="dandruffNo" name="dandruff" value="没有" />
+        <label for="dandruffNo">没有</label><br />
+      </div>
+
+      <!-- 是否头痒（单选） -->
+      <div class="question-group">
+        <label for="itchyScalp">是否头痒（单选）</label><br />
+        <input type="radio" id="itchyScalpYes" name="itchyScalp" value="是" />
+        <label for="itchyScalpYes">是</label><br />
+        <input type="radio" id="itchyScalpNo" name="itchyScalp" value="否" />
+        <label for="itchyScalpNo">否</label><br />
+      </div>
+
+      <!-- 是否喜欢吹空调（单选） -->
+      <div class="question-group">
+        <label for="airConditioning">是否喜欢吹空调（单选）</label><br />
+        <input type="radio" id="airConditioningYes" name="airConditioning" value="是" />
+        <label for="airConditioningYes">是</label><br />
+        <input type="radio" id="airConditioningNo" name="airConditioning" value="否" />
+        <label for="airConditioningNo">否</label><br />
+      </div>
+
+      <!-- 洗头后头发油腻时间（单选） -->
+      <div class="question-group">
+        <label for="greasyTime">洗头后头发油腻时间（单选）</label><br />
+        <input type="radio" id="greasy18Hours" name="greasyTime" value="18小时以内" />
+        <label for="greasy18Hours">18小时以内</label><br />
+        <input type="radio" id="greasy24Hours" name="greasyTime" value="24小时以内" />
+        <label for="greasy24Hours">24小时以内</label><br />
+        <input type="radio" id="greasy36Hours" name="greasyTime" value="36小时以内" />
+        <label for="greasy36Hours">36小时以内</label><br />
+        <input type="radio" id="greasy48Hours" name="greasyTime" value="48小时以内" />
+        <label for="greasy48Hours">48小时以内</label><br />
+      </div>
+
+      <!-- 经常出没的环境（可多选） -->
+      <div class="question-group">
+        <label for="environment1">经常出没的环境（可多选）</label><br />
+        <input type="checkbox" id="formaldehyde" name="environment1" value="含有甲醛的空间" />
+        <label for="formaldehyde">含有甲醛的空间</label><br />
+        <input type="checkbox" id="pm25" name="environment1" value="PM2.5空间" />
+        <label for="pm25">PM2.5空间</label><br />
+        <input type="checkbox" id="secondhandSmoke" name="environment1" value="二手烟空间" />
+        <label for="secondhandSmoke">二手烟空间</label><br />
+      </div>
+
+      <!-- 经常出没的环境（可多选） -->
+      <div class="question-group">
+        <label for="environment2">经常出没的环境（可多选）</label><br />
+        <input type="checkbox" id="sandWind" name="environment2" value="风沙环境" />
+        <label for="sandWind">风沙环境</label><br />
+        <input type="checkbox" id="sunlight" name="environment2" value="太阳直射" />
+        <label for="sunlight">太阳直射</label><br />
+        <input type="checkbox" id="dust" name="environment2" value="灰尘环境" />
+        <label for="dust">灰尘环境</label><br />
+      </div>
+
+      <!-- 提交按钮 -->
+      <button type="button" onclick="submitTest()">提交测试</button>
+    </form>
+
+    <!-- 结果展示区域 -->
+    <div id="result">
+      <h2>脱发归因测试结果</h2>
+
+      <div class="result-section">
+        <h3>您的选择</h3>
+        <p id="selectedOptions"></p>
+      </div>
+
+      <div class="result-section">
+        <h3>脱发原因分析</h3>
+        <p id="hairLossAnalysis"></p>
+      </div>
+
+      <div class="result-section">
+        <h3>生活建议</h3>
+        <p id="lifestyleAdvice"></p>
+      </div>
+
+      <div class="result-section">
+        <h3>洗护建议</h3>
+        <p id="hairCareAdvice"></p>
+      </div>
+
+      <div class="result-section">
+        <h3>饮食建议</h3>
+        <p id="dietAdvice"></p>
+      </div>
+    </div>
+
+    <script>
+      function submitTest() {
+        // 收集用户选择
+        const selectedOptions = [];
+
+        // 处理复选框选项
+        const checkboxes = document.querySelectorAll('input[type="checkbox"]:checked');
+        checkboxes.forEach((checkbox) => {
+          selectedOptions.push(checkbox.value);
+        });
+
+        // 处理单选框选项
+        const radioGroups = document.querySelectorAll('div.question-group');
+        radioGroups.forEach((group) => {
+          const radios = group.querySelectorAll('input[type="radio"]');
+          radios.forEach((radio) => {
+            if (radio.checked) {
+              selectedOptions.push(radio.value);
+            }
+          });
+        });
+
+        // 显示结果区域
+        document.getElementById('result').style.display = 'block';
+
+        // 显示用户选择
+        document.getElementById('selectedOptions').textContent = selectedOptions.join('，');
+
+        // 分析脱发原因
+        analyzeHairLoss(selectedOptions);
+
+        // 滚动到结果区域
+        document.getElementById('result').scrollIntoView({ behavior: 'smooth' });
+      }
+
+      function analyzeHairLoss(options) {
+        // 获取用户选择的脱发区域
+        const hairLossAreas = [];
+        if (options.includes('前额脱发')) hairLossAreas.push('前额脱发');
+        if (options.includes('头顶脱发')) hairLossAreas.push('头顶脱发');
+        if (options.includes('两鬓脱发')) hairLossAreas.push('两鬓脱发');
+        if (options.includes('整体稀疏')) hairLossAreas.push('整体稀疏');
+
+        // 分析身体状况
+        const physicalConditions = [];
+        if (options.includes('肾虚房事不满意')) physicalConditions.push('肾虚');
+        if (options.includes('脾虚吃饭出汗')) physicalConditions.push('脾虚');
+        if (options.includes('气血不足脸色差没精神')) physicalConditions.push('气血不足');
+        if (options.includes('肝郁气滞爱叹气失眠易醒')) physicalConditions.push('肝郁气滞');
+
+        // 分析其他因素
+        const otherFactors = [];
+        if (options.includes('是') && document.querySelector('input[name="heredity"]:checked').value === '是') {
+          otherFactors.push('遗传因素');
+        }
+        if (
+          options.includes('是') &&
+          document.querySelector('input[name="postpartumHairLoss"]:checked').value === '是'
+        ) {
+          otherFactors.push('产后因素');
+        }
+        if (options.includes('身体经常疲倦（缺乏）')) {
+          otherFactors.push('营养缺乏');
+        }
+        if (options.includes('晚上12点入睡')) {
+          otherFactors.push('熬夜');
+        }
+        if (
+          options.includes('经常担心某事') ||
+          options.includes('经常烦躁') ||
+          options.includes('有抑郁') ||
+          options.includes('经常叹气')
+        ) {
+          otherFactors.push('心理压力');
+        }
+        if (options.includes('是') && document.querySelector('input[name="dietGreasy"]:checked').value === '是') {
+          otherFactors.push('饮食油腻');
+        }
+        if (options.includes('是') && document.querySelector('input[name="dietSalty"]:checked').value === '是') {
+          otherFactors.push('饮食偏咸');
+        }
+        if (options.includes('是') && document.querySelector('input[name="smoking"]:checked').value === '是') {
+          otherFactors.push('抽烟');
+        }
+        if (
+          options.includes('是') &&
+          document.querySelector('input[name="hormoneMedication"]:checked').value === '是'
+        ) {
+          otherFactors.push('激素类药物');
+        }
+        if (options.includes('是') && document.querySelector('input[name="chemicalPerm"]:checked').value === '是') {
+          otherFactors.push('化学染烫');
+        }
+        if (options.includes('是') && document.querySelector('input[name="shampooChemicals"]:checked').value === '是') {
+          otherFactors.push('含特定化学物质的洗发水');
+        }
+
+        // 生成脱发原因分析
+        let analysis = '';
+
+        if (hairLossAreas.length > 0) {
+          if (hairLossAreas.length === 1) {
+            switch (hairLossAreas[0]) {
+              case '前额脱发':
+                analysis +=
+                  '您的前额脱发可能与脾胃虚弱有关。脾胃虚弱常表现为身体乏力、食欲不振、口气有异味、腹胀便溏或便秘、怕冷、发缝宽、舌苔厚腻、有痰、身体虚易流汗等现象。';
+                break;
+              case '头顶脱发':
+                analysis +=
+                  '您的头顶脱发可能与肾虚有关。肾虚常表现为腰膝酸软疼痛、头发早白、干枯、稀疏、头顶脱发明显、牙齿松动、酸软、牙龈萎缩、听力下降/耳鸣等现象。';
+                break;
+              case '两鬓脱发':
+                analysis +=
+                  '您的两鬓脱发可能与肝气郁结有关。肝气郁结常表现为情绪低落、郁郁寡欢、容易生闷气、觉得委屈想哭，急躁易怒，头发爱出油、紧张焦虑、喜欢叹气、眼干、眼涩、眼胀、视物模糊、口苦口气难闻等现象。';
+                break;
+              case '整体稀疏':
+                analysis +=
+                  '您的头发整体稀疏可能与气血不足有关。气血不足常表现为身体疲劳乏力，总感觉累，精神萎靡，多说几句就累、轻微活动就气喘吁吁、大汗淋漓，尤其头颈部心跳加快、怕风怕冷、头发干枯分叉、易断裂、无光泽，脱发增多等现象。';
+                break;
+            }
+          } else {
+            analysis +=
+              '您存在多种脱发区域，可能与多种因素综合作用有关。可能的原因包括脾胃虚弱、肾虚、肝气郁结、气血不足等，也可能与遗传、营养、生活习惯等因素有关。';
+          }
+        } else {
+          analysis += '您未选择脱发区域，请至少选择一项脱发区域以便进行分析。';
+        }
+
+        // 添加其他因素
+        if (otherFactors.length > 0) {
+          analysis += '此外，您的脱发可能还与以下因素有关：' + otherFactors.join('、');
+        }
+
+        // 生成生活建议
+        let lifestyleAdvice = '根据您的情况，建议您：\n';
+
+        if (physicalConditions.includes('脾虚')) {
+          lifestyleAdvice += '- 规律作息，保证充足睡眠，晚上11点前入睡，午间适当休息15-30分钟\n';
+          lifestyleAdvice += '- 选择温和的运动，如散步、太极拳、八段锦等\n';
+          lifestyleAdvice += '- 注意腹部保暖，避免穿露脐装，睡觉时盖好腹部\n';
+        }
+
+        if (physicalConditions.includes('肾虚')) {
+          lifestyleAdvice += '- 避免过度劳累，保证充足睡眠\n';
+          lifestyleAdvice += '- 适当进行有氧运动，如慢跑、游泳等\n';
+          lifestyleAdvice += '- 注意腰部保暖，避免久坐\n';
+        }
+
+        if (physicalConditions.includes('肝郁气滞')) {
+          lifestyleAdvice += '- 保持心情舒畅，避免情绪波动过大\n';
+          lifestyleAdvice += '- 适当进行放松活动，如冥想、瑜伽等\n';
+          lifestyleAdvice += '- 保证充足睡眠，避免熬夜\n';
+        }
+
+        if (physicalConditions.includes('气血不足')) {
+          lifestyleAdvice += '- 保证充足睡眠，避免熬夜\n';
+          lifestyleAdvice += '- 适当进行有氧运动，如散步、慢跑等\n';
+          lifestyleAdvice += '- 注意保暖，避免受寒\n';
+        }
+
+        // 洗护建议
+        let hairCareAdvice = '洗护方面，建议您：\n';
+
+        if (options.includes('是') && document.querySelector('input[name="shampooChemicals"]:checked').value === '是') {
+          hairCareAdvice +=
+            '- 停止使用含有强效化学清洁表活的月桂醇、高浓度氯化钠、防腐剂苯甲酸钠、OTC去屑等化学成分的洗发水和护发素\n';
+          hairCareAdvice +=
+            '- 改用植物萃取的氨基酸类温和表活、植物防腐剂、侧柏叶、人参、生姜、皂角、天竺葵、茶树籽、无患子、霍霍巴籽等植物养护的洗护产品\n';
+        }
+
+        hairCareAdvice += '- 头发三天清洗一次，清洗时间不少于三分钟，温和按摩\n';
+        hairCareAdvice += '- 用不超过38度的温水反复清洗干净，用温热的风及时吹干\n';
+
+        // 饮食建议
+        let dietAdvice = '饮食方面，建议您：\n';
+
+        if (physicalConditions.includes('脾虚')) {
+          dietAdvice += '- 细嚼慢咽，专心吃饭，充分咀嚼\n';
+          dietAdvice += '- 饮食定时定量，三餐规律，每餐7-8分饱\n';
+          dietAdvice += '- 食物以温热为主，避免冰镇食物饮料\n';
+          dietAdvice += '- 选择清淡易消化的食物，烹饪方式以蒸、煮、炖、焖为主\n';
+          dietAdvice +=
+            '- 推荐食物：粳米、小米、糯米、薏米、燕麦、山药、南瓜、红薯、芡实、莲子、胡萝卜、白萝卜、卷心菜、菠菜、土豆、芋头、莲藕、扁豆、香菇、猴头菇、生姜等\n';
+        }
+
+        if (physicalConditions.includes('肾虚')) {
+          dietAdvice +=
+            '- 多食用补肾食物，如黑豆、黑芝麻、核桃、枸杞、桑葚、山药、芡实、莲子、栗子、猪腰、羊肉、牛肉等\n';
+          dietAdvice += '- 避免过度饮酒和吸烟\n';
+          dietAdvice += '- 避免食用过多生冷食物\n';
+        }
+
+        if (physicalConditions.includes('肝郁气滞')) {
+          dietAdvice +=
+            '- 多食用疏肝理气的食物，如玫瑰花、茉莉花、菊花茶、柑橘、佛手、香橼、橙子、柚子、茼蒿、西红柿、萝卜、莲藕等\n';
+          dietAdvice += '- 避免食用过多辛辣、油腻、刺激性食物\n';
+          dietAdvice += '- 避免饮酒\n';
+        }
+
+        if (physicalConditions.includes('气血不足')) {
+          dietAdvice +=
+            '- 多食用补气血的食物，如红枣、桂圆、枸杞、黑芝麻、核桃、猪肝、猪血、菠菜、黑木耳、红豆、红米、莲子、芡实等\n';
+          dietAdvice += '- 避免食用过多生冷食物\n';
+          dietAdvice += '- 适当增加蛋白质摄入，如瘦肉、鱼类、蛋类、豆类等\n';
+        }
+
+        // 显示分析结果
+        document.getElementById('hairLossAnalysis').textContent = analysis;
+        document.getElementById('lifestyleAdvice').textContent = lifestyleAdvice;
+        document.getElementById('hairCareAdvice').textContent = hairCareAdvice;
+        document.getElementById('dietAdvice').textContent = dietAdvice;
+      }
+    </script>
+  </body>
+</html>

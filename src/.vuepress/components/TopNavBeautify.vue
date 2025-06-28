@@ -168,6 +168,10 @@ onMounted(() => {
     .slimsearch-button {
       color: #eee;
     }
+    // 调色盘
+    .vp-appearance-button {
+      color: #eee;
+    }
 
     // 左边的名字颜色调整
     .vp-site-name {

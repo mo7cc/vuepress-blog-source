@@ -95,18 +95,7 @@ onMounted(() => {
       text-decoration: underline;
     }
   }
-  .mo7-signature {
-    margin: 0 auto;
-    text-align: center;
-    font-family: Arial, '华文行楷';
-    font-style: italic;
-    font-size: 1.8rem;
-    font-weight: 400;
-    margin-bottom: 1rem;
-    margin-top: 0.6rem;
-    animation: 1.6s showAnimation;
-    text-shadow: 5px 3px 3px rgba(0, 0, 0, 0.7);
-  }
+
   .link-1 {
     animation: 1s showAnimation;
   }
@@ -124,6 +113,17 @@ onMounted(() => {
   }
   .link-6 {
     animation: 3s showAnimation;
+  }
+  .mo7-signature {
+    margin: 0 auto;
+    text-align: center;
+    font-family: Arial, '华文行楷';
+    font-style: italic;
+    font-size: 2.1rem;
+    font-weight: 400;
+    margin-top: 0.6rem;
+    animation: 4s showAnimation;
+    text-shadow: 5px 3px 3px rgba(0, 0, 0, 0.7);
   }
 }
 

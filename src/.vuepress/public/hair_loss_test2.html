@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>脱发归因AI测试</title>
+    <!-- 引入Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- 引入Font Awesome -->
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+
+    <!-- Tailwind配置 -->
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: '#1677FF',
+              secondary: '#4096FF',
+              success: '#00B42A',
+              warning: '#FF7D00',
+              danger: '#F53F3F',
+              light: '#F2F3F5',
+              dark: '#1D2129',
+            },
+            fontFamily: {
+              sans: ['Inter', 'system-ui', 'sans-serif'],
+            },
+          },
+        },
+      };
+    </script>
+
+    <!-- 自定义工具类 -->
+    <style type="text/tailwindcss">
+      @layer utilities {
+        .content-auto {
+          content-visibility: auto;
+        }
+        .text-shadow {
+          text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .card-shadow {
+          box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+        .transition-custom {
+          transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+      }
+    </style>
+
+    <!-- 全局样式 -->
+    <style>
+      body {
+        background-color: #f5f7fa;
+        scroll-behavior: smooth;
+      }
+
+      /* 滚动条样式 */
+      ::-webkit-scrollbar {
+        width: 6px;
+        height: 6px;
+      }
+
+      ::-webkit-scrollbar-track {
+        background: #f1f1f1;
+        border-radius: 3px;
+      }
+
+      ::-webkit-scrollbar-thumb {
+        background: #c1c1c1;
+        border-radius: 3px;
+      }
+
+      ::-webkit-scrollbar-thumb:hover {
+        background: #a1a1a1;
+      }
+
+      /* 表单元素样式 */
+      .form-checkbox,
+      .form-radio {
+        @apply h-5 w-5 text-primary rounded border-gray-300 focus:ring-primary;
+      }
+
+      /* 平滑过渡 */
+      .fade-in {
+        animation: fadeIn 0.5s ease-in-out;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+    </style>
+  </head>
+  <body class="font-sans text-dark">
+    <!-- 页面头部 -->
+    <header class="bg-white py-4 px-6 shadow-sm">
+      <div class="container mx-auto flex justify-between items-center">
+        <div class="flex items-center space-x-2">
+          <i class="fa fa-leaf text-primary text-2xl"></i>
+          <h1 class="text-xl font-bold text-primary">脱发归因AI测试</h1>
+        </div>
+        <div class="text-sm text-gray-500">
+          <span class="inline-block mr-2"> <i class="fa fa-clock-o mr-1"></i>约需5分钟 </span>
+          <span> <i class="fa fa-user-circle-o mr-1"></i>个性化分析 </span>
+        </div>
+      </div>
+    </header>
+
+    <!-- 主内容区 -->
+    <main class="container mx-auto px-4 py-6 max-w-4xl">
+      <!-- 进度指示器 -->
+      <div class="mb-8">
+        <div class="flex items-center justify-between mb-2">
+          <span class="text-sm font-medium text-gray-500">测试进度</span>
+          <span class="text-sm font-medium text-primary">100%</span>
+        </div>
+        <div class="w-full bg-gray-200 rounded-full h-2">
+          <div class="bg-primary h-2 rounded-full transition-all duration-500" style="width: 100%"></div>
+        </div>
+      </div>
+
+      <!-- 表单卡片 -->
+      <div class="bg-white rounded-xl shadow-lg p-6 mb-8 fade-in">
+        <h2 class="text-lg font-bold mb-6 text-gray-800">请选择您的脱发情况</h2>
+
+        <form id="testForm" class="space-y-6">
+          <!-- 脱发区域（可多选） -->
+          <div class="question-card bg-light rounded-lg p-5 transition-custom hover:shadow-md">
+            <div class="flex items-start mb-4">
+              <div class="flex-shrink-0 h-6 w-6 rounded-full bg-primary/10 flex items-center justify-center">
+                <span class="text-primary font-medium">1</span>
+              </div>
+              <h3 class="ml-3 text-base font-medium text-gray-800">脱发区域（可多选）</h3>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <label
+                class="flex items-center p-3 rounded-lg border border-gray-200 cursor-pointer hover:border-primary/50 transition-custom"
+              >
+                <input type="checkbox" id="forehead" name="hairLossArea" value="前额脱发" class="form-checkbox" />
+                <span class="ml-2 text-sm text-gray-700">前额脱发</span>
+              </label>
+
+              <label
+                class="flex items-center p-3 rounded-lg border border-gray-200 cursor-pointer hover:border-primary/50 transition-custom"
+              >
+                <input type="checkbox" id="crown" name="hairLossArea" value="头顶脱发" class="form-checkbox" />
+                <span class="ml-2 text-sm text-gray-700">头顶脱发</span>
+              </label>
+
+              <label
+                class="flex items-center p-3 rounded-lg border border-gray-200 cursor-pointer hover:border-primary/50 transition-custom"
+              >
+                <input type="checkbox" id="temples" name="hairLossArea" value="两鬓脱发" class="form-checkbox" />
+                <span class="ml-2 text-sm text-gray-700">两鬓脱发</span>
+              </label>
+
+              <label
+                class="flex items-center p-3 rounded-lg border border-gray-200 cursor-pointer hover:border-primary/50 transition-custom"
+              >
+                <input type="checkbox" id="overall" name="hairLossArea" value="整体稀疏" class="form-checkbox" />
+                <span class="ml-2 text-sm text-gray-700">整体稀疏</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- 身体状况（可多选） -->
+          <div class="question-card bg-light rounded-lg p-5 transition-custom hover:shadow-md">
+            <div class="flex items-start mb-4">
+              <div class="flex-shrink-0 h-6 w-6 rounded-full bg-primary/10 flex items-center justify-center">
+                <span class="text-primary font-medium">2</span>
+              </div>
+              <h3 class="ml-3 text-base font-medium text-gray-800">身体状况（可多选）</h3>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <label
+                class="flex items-center p-3 rounded-lg border border-gray-200 cursor-pointer hover:border-primary/50 transition-custom"
+              >
+                <input
+                  type="checkbox"
+                  id="kidneyDeficiency"
+                  name="physicalCondition"
+                  value="肾虚房事不满意"
+                  class="form-checkbox"
+                />
+                <span class="ml-2 text-sm text-gray-700">肾虚房事不满意</span>
+              </label>
+
+              <label
+                class="flex items-center p-3 rounded-lg border border-gray-200 cursor-pointer hover:border-primary/50 transition-custom"
+              >
+                <input
+                  type="checkbox"
+                  id="spleenWeakness"
+                  name="physicalCondition"
+                  value="脾虚吃饭出汗"
+                  class="form-checkbox"
+                />
+                <span class="ml-2 text-sm text-gray-700">脾虚吃饭出汗</span>
+              </label>
+
+              <label
+                class="flex items-center p-3 rounded-lg border border-gray-200 cursor-pointer hover:border-primary/50 transition-custom"
+              >
+                <input
+                  type="checkbox"
+                  id="qiBloodDeficiency"
+                  name="physicalCondition"
+                  value="气血不足脸色差没精神"
+                  class="form-checkbox"
+                />
+                <span class="ml-2 text-sm text-gray-700">气血不足脸色差没精神</span>
+              </label>
+
+              <label
+                class="flex items-center p-3 rounded-lg border border-gray-200 cursor-pointer hover:border-primary/50 transition-custom"
+              >
+                <input
+                  type="checkbox"
+                  id="liverQiStagnation"
+                  name="physicalCondition"
+                  value="肝郁气滞爱叹气失眠易醒"
+                  class="form-checkbox"
+                />
+                <span class="ml-2 text-sm text-gray-700">肝郁气滞爱叹气失眠易醒</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- 单选问题组 -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <!-- 是否有遗传（单选） -->
+            <div class="question-card bg-light rounded-lg p-5 transition-custom hover:shadow-md">
+              <div class="flex items-start mb-4">
+                <div class="flex-shrink-0 h-6 w-6 rounded-full bg-primary/10 flex items-center justify-center">
+                  <span class="text-primary font-medium">3</span>
+                </div>
+                <h3 class="ml-3 text-base font-medium text-gray-800">是否有遗传</h3>
+              </div>
+
+              <div class="space-y-3">
+                <label
+                  class="flex items-center p-3 rounded-lg border border-gray-200 cursor-pointer hover:border-primary/50 transition-custom"
+                >
+                  <input type="radio" id="heredityYes" name="heredity" value="是" class="form-radio" />
+                  <span class="ml-2 text-sm text-gray-700">是</span>
+                </label>
+
+                <label
+                  class="flex items-center p-3 rounded-lg border border-gray-200 cursor-pointer hover:border-primary/50 transition-custom"
+                >
+                  <input type="radio" id="heredityNo" name="heredity" value="否" class="form-radio" />
+                  <span class="ml-2 text-sm text-gray-700">否</span>
+                </label>
+              </div>
+            </div>
+
+            <!-- 是否产后脱发（单选） -->
+            <div class="question-card bg-light rounded-lg p-5 transition-custom hover:shadow-md">
+              <div class="flex items-start mb-4">
+                <div class="flex-shrink-0 h-6 w-6 rounded-full bg-primary/10 flex items-center justify-center">
+                  <span class="text-primary font-medium">4</span>
+                </div>
+                <h3 class="ml-3 text-base font-medium text-gray-800">是否产后脱发</h3>
+              </div>
+
+              <div class="space-y-3">
+                <label
+                  class="flex items-center p-3 rounded-lg border border-gray-200 cursor-pointer hover:border-primary/50 transition-custom"
+                >
+                  <input type="radio" id="postpartumYes" name="postpartumHairLoss" value="是" class="form-radio" />
+                  <span class="ml-2 text-sm text-gray-700">是</span>
+                </label>
+
+                <label
+                  class="flex items-center p-3 rounded-lg border border-gray-200 cursor-pointer hover:border-primary/50 transition-custom"
+                >
+                  <input type="radio" id="postpartumNo" name="postpartumHairLoss" value="否" class="form-radio" />
+                  <span class="ml-2 text-sm text-gray-700">否</span>
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <!-- 剩余问题（简化版，实际使用时可根据需要扩展） -->
+          <div class="question-card bg-light rounded-lg p-5 transition-custom hover:shadow-md">
+            <div class="flex items-start mb-4">
+              <div class="flex-shrink-0 h-6 w-6 rounded-full bg-primary/10 flex items-center justify-center">
+                <span class="text-primary font-medium">5</span>
+              </div>
+              <h3 class="ml-3 text-base font-medium text-gray-800">是否缺乏营养</h3>
+            </div>
+
+            <div class="space-y-3">
+              <label
+                class="flex items-center p-3 rounded-lg border border-gray-200 cursor-pointer hover:border-primary/50 transition-custom"
+              >
+                <input
+                  type="radio"
+                  id="nutritionTired"
+                  name="nutrition"
+                  value="身体经常疲倦（缺乏）"
+                  class="form-radio"
+                />
+                <span class="ml-2 text-sm text-gray-700">身体经常疲倦（缺乏）</span>
+              </label>
+
+              <label
+                class="flex items-center p-3 rounded-lg border border-gray-200 cursor-pointer hover:border-primary/50 transition-custom"
+              >
+                <input
+                  type="radio"
+                  id="nutritionEnergetic"
+                  name="nutrition"
+                  value="感觉精神很好（不缺乏）"
+                  class="form-radio"
+                />
+                <span class="ml-2 text-sm text-gray-700">感觉精神很好（不缺乏）</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- 提交按钮 -->
+          <div class="flex justify-center mt-8">
+            <button
+              type="button"
+              id="submitBtn"
+              onclick="submitTest()"
+              class="w-full max-w-xs bg-primary hover:bg-primary/90 text-white font-medium py-3 px-6 rounded-lg shadow-lg transition-custom transform hover:-translate-y-1 hover:shadow-xl flex items-center justify-center"
+            >
+              <span>提交测试</span>
+              <i class="fa fa-arrow-right ml-2"></i>
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <!-- 结果展示区域 -->
+      <div id="result" class="hidden space-y-6 mb-8 fade-in">
+        <div class="bg-white rounded-xl shadow-lg overflow-hidden">
+          <div class="bg-primary text-white p-4">
+            <h2 class="text-xl font-bold flex items-center"><i class="fa fa-bar-chart mr-2"></i>脱发归因测试结果</h2>
+          </div>
+
+          <div class="p-6">
+            <!-- 用户选择摘要 -->
+            <div class="mb-6">
+              <h3 class="text-lg font-medium text-gray-800 mb-3 flex items-center">
+                <i class="fa fa-list-alt text-primary mr-2"></i>您的选择
+              </h3>
+              <div class="bg-light p-4 rounded-lg">
+                <p id="selectedOptions" class="text-gray-700"></p>
+              </div>
+            </div>
+
+            <!-- 脱发原因分析 -->
+            <div class="mb-6">
+              <h3 class="text-lg font-medium text-gray-800 mb-3 flex items-center">
+                <i class="fa fa-search text-primary mr-2"></i>脱发原因分析
+              </h3>
+              <div class="bg-light p-4 rounded-lg">
+                <p id="hairLossAnalysis" class="text-gray-700"></p>
+              </div>
+            </div>
+
+            <!-- 建议部分 -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <!-- 生活建议 -->
+              <div>
+                <h3 class="text-lg font-medium text-gray-800 mb-3 flex items-center">
+                  <i class="fa fa-heartbeat text-success mr-2"></i>生活建议
+                </h3>
+                <div class="bg-light p-4 rounded-lg">
+                  <p id="lifestyleAdvice" class="text-gray-700"></p>
+                </div>
+              </div>
+
+              <!-- 洗护建议 -->
+              <div>
+                <h3 class="text-lg font-medium text-gray-800 mb-3 flex items-center">
+                  <i class="fa fa-shower text-secondary mr-2"></i>洗护建议
+                </h3>
+                <div class="bg-light p-4 rounded-lg">
+                  <p id="hairCareAdvice" class="text-gray-700"></p>
+                </div>
+              </div>
+
+              <!-- 饮食建议 -->
+              <div>
+                <h3 class="text-lg font-medium text-gray-800 mb-3 flex items-center">
+                  <i class="fa fa-cutlery text-warning mr-2"></i>饮食建议
+                </h3>
+                <div class="bg-light p-4 rounded-lg">
+                  <p id="dietAdvice" class="text-gray-700"></p>
+                </div>
+              </div>
+
+              <!-- 注意事项 -->
+              <div>
+                <h3 class="text-lg font-medium text-gray-800 mb-3 flex items-center">
+                  <i class="fa fa-exclamation-circle text-danger mr-2"></i>注意事项
+                </h3>
+                <div class="bg-light p-4 rounded-lg">
+                  <p class="text-gray-700">
+                    本测试结果仅供参考，不能替代专业医生的诊断。如果您的脱发问题持续或加重，请咨询专业医生获取个性化建议。
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 重新测试按钮 -->
+        <div class="flex justify-center">
+          <button
+            type="button"
+            onclick="resetTest()"
+            class="w-full max-w-xs bg-white border border-primary text-primary font-medium py-3 px-6 rounded-lg shadow-md transition-custom hover:bg-primary/5 flex items-center justify-center"
+          >
+            <i class="fa fa-refresh mr-2"></i>
+            <span>重新测试</span>
+          </button>
+        </div>
+      </div>
+    </main>
+
+    <!-- 页脚 -->
+    <footer class="bg-white py-6 px-4 border-t border-gray-200">
+      <div class="container mx-auto max-w-4xl">
+        <div class="text-center text-gray-500 text-sm">
+          <p class="mb-2">© 2023 脱发归因AI测试</p>
+          <p>本测试结果仅供参考，不构成医疗建议</p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- 脚本 -->
+    <script>
+      function submitTest() {
+        // 显示加载状态
+        const submitBtn = document.getElementById('submitBtn');
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = '<i class="fa fa-spinner fa-spin mr-2"></i>分析中...';
+
+        // 模拟加载延迟
+        setTimeout(() => {
+          // 收集用户选择
+          const selectedOptions = [];
+
+          // 处理复选框选项
+          const checkboxes = document.querySelectorAll('input[type="checkbox"]:checked');
+          checkboxes.forEach((checkbox) => {
+            selectedOptions.push(checkbox.value);
+          });
+
+          // 处理单选框选项
+          const radioGroups = document.querySelectorAll('input[type="radio"]:checked');
+          radioGroups.forEach((radio) => {
+            selectedOptions.push(radio.value);
+          });
+
+          // 显示结果区域
+          document.getElementById('result').style.display = 'block';
+
+          // 显示用户选择
+          document.getElementById('selectedOptions').textContent = selectedOptions.join('，');
+
+          // 分析脱发原因
+          analyzeHairLoss(selectedOptions);
+
+          // 滚动到结果区域
+          document.getElementById('result').scrollIntoView({ behavior: 'smooth' });
+
+          // 恢复按钮状态
+          submitBtn.disabled = false;
+          submitBtn.innerHTML = '<span>提交测试</span><i class="fa fa-arrow-right ml-2"></i>';
+        }, 1500);
+      }
+
+      function analyzeHairLoss(options) {
+        // 获取用户选择的脱发区域
+        const hairLossAreas = [];
+        if (options.includes('前额脱发')) hairLossAreas.push('前额脱发');
+        if (options.includes('头顶脱发')) hairLossAreas.push('头顶脱发');
+        if (options.includes('两鬓脱发')) hairLossAreas.push('两鬓脱发');
+        if (options.includes('整体稀疏')) hairLossAreas.push('整体稀疏');
+
+        // 分析身体状况
+        const physicalConditions = [];
+        if (options.includes('肾虚房事不满意')) physicalConditions.push('肾虚');
+        if (options.includes('脾虚吃饭出汗')) physicalConditions.push('脾虚');
+        if (options.includes('气血不足脸色差没精神')) physicalConditions.push('气血不足');
+        if (options.includes('肝郁气滞爱叹气失眠易醒')) physicalConditions.push('肝郁气滞');
+
+        // 分析其他因素
+        const otherFactors = [];
+        if (options.includes('是') && document.querySelector('input[name="heredity"]:checked').value === '是') {
+          otherFactors.push('遗传因素');
+        }
+        if (
+          options.includes('是') &&
+          document.querySelector('input[name="postpartumHairLoss"]:checked').value === '是'
+        ) {
+          otherFactors.push('产后因素');
+        }
+        if (options.includes('身体经常疲倦（缺乏）')) {
+          otherFactors.push('营养缺乏');
+        }
+        if (options.includes('晚上12点入睡')) {
+          otherFactors.push('熬夜');
+        }
+        if (
+          options.includes('经常担心某事') ||
+          options.includes('经常烦躁') ||
+          options.includes('有抑郁') ||
+          options.includes('经常叹气')
+        ) {
+          otherFactors.push('心理压力');
+        }
+        if (options.includes('是') && document.querySelector('input[name="dietGreasy"]:checked').value === '是') {
+          otherFactors.push('饮食油腻');
+        }
+        if (options.includes('是') && document.querySelector('input[name="dietSalty"]:checked').value === '是') {
+          otherFactors.push('饮食偏咸');
+        }
+        if (options.includes('是') && document.querySelector('input[name="smoking"]:checked').value === '是') {
+          otherFactors.push('抽烟');
+        }
+        if (
+          options.includes('是') &&
+          document.querySelector('input[name="hormoneMedication"]:checked').value === '是'
+        ) {
+          otherFactors.push('激素类药物');
+        }
+        if (options.includes('是') && document.querySelector('input[name="chemicalPerm"]:checked').value === '是') {
+          otherFactors.push('化学染烫');
+        }
+        if (options.includes('是') && document.querySelector('input[name="shampooChemicals"]:checked').value === '是') {
+          otherFactors.push('含特定化学物质的洗发水');
+        }
+
+        // 生成脱发原因分析
+        let analysis = '';
+
+        if (hairLossAreas.length > 0) {
+          if (hairLossAreas.length === 1) {
+            switch (hairLossAreas[0]) {
+              case '前额脱发':
+                analysis +=
+                  '您的前额脱发可能与脾胃虚弱有关。脾胃虚弱常表现为身体乏力、食欲不振、口气有异味、腹胀便溏或便秘、怕冷、发缝宽、舌苔厚腻、有痰、身体虚易流汗等现象。';
+                break;
+              case '头顶脱发':
+                analysis +=
+                  '您的头顶脱发可能与肾虚有关。肾虚常表现为腰膝酸软疼痛、头发早白、干枯、稀疏、头顶脱发明显、牙齿松动、酸软、牙龈萎缩、听力下降/耳鸣等现象。';
+                break;
+              case '两鬓脱发':
+                analysis +=
+                  '您的两鬓脱发可能与肝气郁结有关。肝气郁结常表现为情绪低落、郁郁寡欢、容易生闷气、觉得委屈想哭，急躁易怒，头发爱出油、紧张焦虑、喜欢叹气、眼干、眼涩、眼胀、视物模糊、口苦口气难闻等现象。';
+                break;
+              case '整体稀疏':
+                analysis +=
+                  '您的头发整体稀疏可能与气血不足有关。气血不足常表现为身体疲劳乏力，总感觉累，精神萎靡，多说几句就累、轻微活动就气喘吁吁、大汗淋漓，尤其头颈部心跳加快、怕风怕冷、头发干枯分叉、易断裂、无光泽，脱发增多等现象。';
+                break;
+            }
+          } else {
+            analysis +=
+              '您存在多种脱发区域，可能与多种因素综合作用有关。可能的原因包括脾胃虚弱、肾虚、肝气郁结、气血不足等，也可能与遗传、营养、生活习惯等因素有关。';
+          }
+        } else {
+          analysis += '您未选择脱发区域，请至少选择一项脱发区域以便进行分析。';
+        }
+
+        // 添加其他因素
+        if (otherFactors.length > 0) {
+          analysis += '此外，您的脱发可能还与以下因素有关：' + otherFactors.join('、');
+        }
+
+        // 生成生活建议
+        let lifestyleAdvice = '';
+
+        if (physicalConditions.includes('脾虚')) {
+          lifestyleAdvice += '• 规律作息，保证充足睡眠，晚上11点前入睡，午间适当休息15-30分钟\n';
+          lifestyleAdvice += '• 选择温和的运动，如散步、太极拳、八段锦等\n';
+          lifestyleAdvice += '• 注意腹部保暖，避免穿露脐装，睡觉时盖好腹部\n';
+        }
+
+        if (physicalConditions.includes('肾虚')) {
+          lifestyleAdvice += '• 避免过度劳累，保证充足睡眠\n';
+          lifestyleAdvice += '• 适当进行有氧运动，如慢跑、游泳等\n';
+          lifestyleAdvice += '• 注意腰部保暖，避免久坐\n';
+        }
+
+        if (physicalConditions.includes('肝郁气滞')) {
+          lifestyleAdvice += '• 保持心情舒畅，避免情绪波动过大\n';
+          lifestyleAdvice += '• 适当进行放松活动，如冥想、瑜伽等\n';
+          lifestyleAdvice += '• 保证充足睡眠，避免熬夜\n';
+        }
+
+        if (physicalConditions.includes('气血不足')) {
+          lifestyleAdvice += '• 保证充足睡眠，避免熬夜\n';
+          lifestyleAdvice += '• 适当进行有氧运动，如散步、慢跑等\n';
+          lifestyleAdvice += '• 注意保暖，避免受寒\n';
+        }
+
+        // 洗护建议
+        let hairCareAdvice = '';
+
+        if (options.includes('是') && document.querySelector('input[name="shampooChemicals"]:checked').value === '是') {
+          hairCareAdvice +=
+            '• 停止使用含有强效化学清洁表活的月桂醇、高浓度氯化钠、防腐剂苯甲酸钠、OTC去屑等化学成分的洗发水和护发素\n';
+          hairCareAdvice +=
+            '• 改用植物萃取的氨基酸类温和表活、植物防腐剂、侧柏叶、人参、生姜、皂角、天竺葵、茶树籽、无患子、霍霍巴籽等植物养护的洗护产品\n';
+        }
+
+        hairCareAdvice += '• 头发三天清洗一次，清洗时间不少于三分钟，温和按摩\n';
+        hairCareAdvice += '• 用不超过38度的温水反复清洗干净，用温热的风及时吹干\n';
+
+        // 饮食建议
+        let dietAdvice = '';
+
+        if (physicalConditions.includes('脾虚')) {
+          dietAdvice += '• 细嚼慢咽，专心吃饭，充分咀嚼\n';
+          dietAdvice += '• 饮食定时定量，三餐规律，每餐7-8分饱\n';
+          dietAdvice += '• 食物以温热为主，避免冰镇食物饮料\n';
+          dietAdvice += '• 选择清淡易消化的食物，烹饪方式以蒸、煮、炖、焖为主\n';
+          dietAdvice +=
+            '• 推荐食物：粳米、小米、糯米、薏米、燕麦、山药、南瓜、红薯、芡实、莲子、胡萝卜、白萝卜、卷心菜、菠菜、土豆、芋头、莲藕、扁豆、香菇、猴头菇、生姜等\n';
+        }
+
+        if (physicalConditions.includes('肾虚')) {
+          dietAdvice +=
+            '• 多食用补肾食物，如黑豆、黑芝麻、核桃、枸杞、桑葚、山药、芡实、莲子、栗子、猪腰、羊肉、牛肉等\n';
+          dietAdvice += '• 避免过度饮酒和吸烟\n';
+          dietAdvice += '• 避免食用过多生冷食物\n';
+        }
+
+        if (physicalConditions.includes('肝郁气滞')) {
+          dietAdvice +=
+            '• 多食用疏肝理气的食物，如玫瑰花、茉莉花、菊花茶、柑橘、佛手、香橼、橙子、柚子、茼蒿、西红柿、萝卜、莲藕等\n';
+          dietAdvice += '• 避免食用过多辛辣、油腻、刺激性食物\n';
+          dietAdvice += '• 避免饮酒\n';
+        }
+
+        if (physicalConditions.includes('气血不足')) {
+          dietAdvice +=
+            '• 多食用补气血的食物，如红枣、桂圆、枸杞、黑芝麻、核桃、猪肝、猪血、菠菜、黑木耳、红豆、红米、莲子、芡实等\n';
+          dietAdvice += '• 避免食用过多生冷食物\n';
+          dietAdvice += '• 适当增加蛋白质摄入，如瘦肉、鱼类、蛋类、豆类等\n';
+        }
+
+        // 显示分析结果
+        document.getElementById('hairLossAnalysis').textContent = analysis;
+        document.getElementById('lifestyleAdvice').textContent = lifestyleAdvice;
+        document.getElementById('hairCareAdvice').textContent = hairCareAdvice;
+        document.getElementById('dietAdvice').textContent = dietAdvice;
+      }
+
+      function resetTest() {
+        // 重置所有表单选项
+        document.querySelectorAll('input[type="checkbox"]').forEach((checkbox) => {
+          checkbox.checked = false;
+        });
+
+        document.querySelectorAll('input[type="radio"]').forEach((radio) => {
+          radio.checked = false;
+        });
+
+        // 隐藏结果区域
+        document.getElementById('result').style.display = 'none';
+
+        // 滚动到表单顶部
+        document.getElementById('testForm').scrollIntoView({ behavior: 'smooth' });
+      }
+
+      // 表单选项选中效果
+      document.querySelectorAll('input[type="checkbox"], input[type="radio"]').forEach((input) => {
+        input.addEventListener('change', function () {
+          const label = this.closest('label');
+          if (label) {
+            if (this.checked) {
+              label.classList.add('border-primary', 'bg-primary/5');
+            } else {
+              label.classList.remove('border-primary', 'bg-primary/5');
+            }
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
