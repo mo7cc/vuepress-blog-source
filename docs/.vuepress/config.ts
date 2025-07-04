@@ -2,7 +2,7 @@ import { defineUserConfig } from 'vuepress';
 import theme from './theme';
 import { getDirname, path } from 'vuepress/utils';
 const __dirname = getDirname(import.meta.url);
-const SrcPath = path.resolve(__dirname, '../');
+const docsPath = path.resolve(__dirname, '../');
 
 // const urls: any = [];
 
@@ -25,7 +25,7 @@ export default defineUserConfig({
 
   alias: {
     '@components': path.resolve(__dirname, 'components'),
-    '@src': SrcPath,
+    '@docs': docsPath,
   },
   locales: {
     '/': {

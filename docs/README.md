@@ -64,7 +64,7 @@ projects:
 
 <div id="mo7-blog-hero-content">
   <a target="_blank" class="link image-link link-1" href="https://mo7.cc">
-    <img class="vp-blog-hero-image" src="//file.mo7.cc/static/lxh_gif/lxh_71.gif" alt="" srcset="" />
+    <img class="mo7-blog-hero-image" src="//file.mo7.cc/static/lxh_gif/lxh_71.gif" alt="" srcset="" />
   </a>
   <a target="_blank" class="link  link-2" href="https://mo7cc.github.io">
     <h1 class="vp-blog-hero-title">墨七<span class="vp-blog-hero-subtitle">(mo7.cc)</span></h1>
@@ -85,7 +85,7 @@ projects:
     <h2>E-mail</h2>
     <span>meichangliang@outlook.com</span>
   </a>
-  <h3 class="mo7-signature">墨染七弦月,笔耕半亩田.</h3>
+  <h3 class="mo7-signature">墨染七弦月，笔耕半亩田。</h3>
 </div>
 
 <div id="mo7-hitokoto-wrapper">

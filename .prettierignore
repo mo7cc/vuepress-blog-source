@@ -8,9 +8,9 @@
 draft
 
 node_modules/
-src/.vuepress/.cache/
-src/.vuepress/.temp/
-src/.vuepress/dist/
+**/**/.cache/
+**/**/.temp/
+**/**/dist/
 dist/
 .DS_Store
 

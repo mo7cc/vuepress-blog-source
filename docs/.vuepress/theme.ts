@@ -103,8 +103,8 @@ export default hopeTheme({
     obsidianImgSize: true,
     include: {
       resolvePath: (file) => {
-        if (file.startsWith('@src')) {
-          return file.replace('@src', path.resolve(__dirname, '..'));
+        if (file.startsWith('@docs')) {
+          return file.replace('@docs', path.resolve(__dirname, '..'));
         }
         return file;
       },

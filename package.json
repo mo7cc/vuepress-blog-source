@@ -1,14 +1,14 @@
 {
   "name": "mo7_obsidian_data",
-  "version": "1.6.3",
+  "version": "1.7.1",
   "description": "墨七的 Obsidian 笔记仓库。",
   "license": "MIT",
   "author": "墨七",
   "type": "module",
   "scripts": {
-    "build": "vuepress-vite build src",
-    "dev-clean": "vuepress-vite dev src --clean-cache",
-    "dev": "vuepress-vite dev src",
+    "build": "vuepress-vite build docs",
+    "dev-clean": "vuepress-vite dev docs --clean-cache",
+    "dev": "vuepress-vite dev docs",
     "update-package": "bun x vp-update",
     "sync": "bun script/js_shell/git-sync.ts",
     "deploy": "bun script/js_shell/deploy.ts",

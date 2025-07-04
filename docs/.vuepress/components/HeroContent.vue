@@ -49,7 +49,7 @@ onMounted(() => {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  .vp-blog-hero-image {
+  .mo7-blog-hero-image {
     transition: all 0.5s;
     width: 124px;
     display: block;
