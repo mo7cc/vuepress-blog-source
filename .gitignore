@@ -189,6 +189,10 @@ go.sum
 
 logs
 
+## Python
+
+**/*/__pycache__
+
 ## Obsidian
 
 *.foldersync.old
