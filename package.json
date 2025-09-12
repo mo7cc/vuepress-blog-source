@@ -5,6 +5,14 @@
   "license": "MIT",
   "author": "墨七",
   "type": "module",
+  "prettier": {
+    "singleQuote": true
+  },
+  "prettierIgnore": [
+    "node_modules/",
+    "dist/",
+    ".obsidian/"
+  ],
   "scripts": {
     "build": "vuepress-vite build docs",
     "dev-clean": "vuepress-vite dev docs --clean-cache",
@@ -17,26 +25,35 @@
     "preview": "go run script/go_shell/static_serve.go",
     "clear-dir": "bun run script/js_shell/clear_dir.ts"
   },
-  "devDependencies": {
-    "@types/bun": "^1.2.17",
-    "@types/cheerio": "^0.22.35",
-    "@vuepress/bundler-vite": "2.0.0-rc.23",
-    "@vuepress/plugin-feed": "2.0.0-rc.110",
-    "@vuepress/plugin-prismjs": "2.0.0-rc.110",
-    "@vuepress/plugin-pwa": "2.0.0-rc.110",
-    "@vuepress/plugin-slimsearch": "2.0.0-rc.110",
-    "vuepress-theme-hope": "2.0.0-rc.93",
-    "vuepress": "2.0.0-rc.23",
-    "vue": "^3.5.17",
-    "@waline/client": "^3.5.7",
+  "dependencies": {
+    "@vuepress/bundler-vite": "2.0.0-rc.24",
+    "@vuepress/plugin-feed": "2.0.0-rc.112",
+    "@vuepress/plugin-prismjs": "2.0.0-rc.112",
+    "@vuepress/plugin-pwa": "2.0.0-rc.112",
+    "@vuepress/plugin-slimsearch": "2.0.0-rc.112",
+    "@waline/client": "^3.6.0",
+    "vuepress-theme-hope": "2.0.0-rc.94",
+    "vuepress": "2.0.0-rc.24",
+    "vue": "^3.5.21",
     "aplayer": "^1.10.1",
     "art-template": "^4.13.4",
-    "axios": "^1.10.0",
-    "cheerio": "^1.1.0",
-    "dayjs": "^1.11.13",
-    "fs-extra": "^11.3.0",
-    "sass-embedded": "^1.89.2",
+    "axios": "^1.12.0",
+    "cheerio": "^1.1.2",
+    "dayjs": "^1.11.18",
+    "fs-extra": "^11.3.1",
+    "sass-embedded": "^1.92.1",
     "store": "^2.0.12",
-    "node-cron": "^4.1.1"
+    "node-cron": "^4.2.1"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.35.0",
+    "@types/bun": "^1.2.21",
+    "@types/cheerio": "^0.22.35",
+    "eslint": "^9.35.0",
+    "eslint-plugin-vue": "^10.4.0",
+    "globals": "^16.4.0",
+    "jiti": "^2.5.1",
+    "prettier": "^3.6.2",
+    "typescript-eslint": "^8.43.0"
   }
 }

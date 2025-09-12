@@ -203,6 +203,9 @@ rs-test-folder-*
 .obsidian/workspace-mobile.json
 .vscode/workspace-mobile.json
 
+
+
 ## 自定义
 demo/@AutomationLog.txt
 demo/*.log
+.DS_Store

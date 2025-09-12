@@ -1,3 +1,3 @@
 module mo7cc
 
-go 1.24
+go 1.25
