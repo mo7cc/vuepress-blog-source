@@ -19,7 +19,7 @@ export default defineUserConfig({
   base: '/',
   dest: 'dist',
   host: '0.0.0.0',
-  port: 9451,
+  port: 9901,
   temp: '.cache/.vp-temp',
   cache: '.cache/.vp-cache',
 
