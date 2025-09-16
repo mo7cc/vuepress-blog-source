@@ -6,13 +6,7 @@ import { defineConfig } from 'eslint/config';
 
 export default defineConfig([
   {
-    ignores: [
-      'node_modules/',
-      'dist/',
-      '**/**/.cache/',
-      '**/**/.temp/',
-      '**/**/dist/',
-    ],
+    ignores: ['node_modules/', 'dist/', '.obsidian/'],
   },
   // 先加载推荐配置
   tseslint.configs.recommended,
